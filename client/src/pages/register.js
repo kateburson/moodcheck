@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import API from "../utils/API";
 
 class Register extends React.Component {
@@ -10,10 +10,6 @@ class Register extends React.Component {
     password: "",
     password2: "",
   };
-
-  componentDidMount = () => {
-
-  }
 
   handleChange = e => {
     this.setState({ [e.target.id]: e.target.value });
@@ -27,14 +23,23 @@ class Register extends React.Component {
         email: this.state.email,
         password: this.state.password
       }
-      API.register(userData);
+      API.register(userData).then(this.setState({redirectToLogin: true}));
     } else {
       alert("Passwords do not match");
     }
-    
   };
 
+  state = {
+    redirectToLogin: false
+  }
+
   render() {
+    const { redirectToLogin } = this.state
+
+    if (redirectToLogin === true) {
+      return <Redirect to='/login' />
+    }
+
     return(
       <div className="valign-wrapper" style={{ 
         height: "100vh", 

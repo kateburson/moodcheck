@@ -9,9 +9,4 @@ router.route("/login")
 router.route("/register")
   .post(usersController.register)
 
-// Matches with "/api/users/validate"
-router
-  .route("/validate")
-  .post(usersController.validate)
-
 module.exports = router;
