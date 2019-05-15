@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/kateburson/moodcheck/issues"
   },
-  "homepage": "https://github.com/kateburson/moodcheck#readme",
+  "homepage": "https://peaceful-wildwood-71736.herokuapp.com/",
   "dependencies": {
     "axios": "^0.18.0",
     "bcrypt": "^3.0.6",
