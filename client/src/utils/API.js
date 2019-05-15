@@ -8,6 +8,6 @@ export default {
     return axios.post("/api/users/login", userData)
   },
   validateToken: function(t) {
-    return axios.post("/api/users/validate", { token: t });
+    return axios.post("/api/users/validate", { token: t })
   }
 };

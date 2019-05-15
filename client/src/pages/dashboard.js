@@ -3,12 +3,12 @@ import API from "../utils/API";
 
 class Dashboard extends React.Component {
   
-  componentDidMount() {
-    const token = localStorage.getItem("current_user_token");
-    API.validateToken(token)
-      .then(res => this.setState({name: res.name}))
-      .catch(() => localStorage.removeItem('current_user_token'));
-    }
+  // componentDidMount() {
+  //   const token = localStorage.getItem("current_user_token");
+  //   API.validateToken(token)
+  //     .then(res => this.setState({name: res.name}))
+  //     .catch(() => localStorage.removeItem('current_user_token'));
+  //   }
 
 
   state = {
