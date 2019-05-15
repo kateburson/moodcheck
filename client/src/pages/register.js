@@ -23,23 +23,14 @@ class Register extends React.Component {
         email: this.state.email,
         password: this.state.password
       }
-      API.register(userData).then(this.setState({redirectToLogin: true}));
+      API.register(userData).then(<Redirect to='/login' />);
     } else {
       alert("Passwords do not match");
     }
   };
 
-  state = {
-    redirectToLogin: false
-  }
 
   render() {
-    const { redirectToLogin } = this.state
-
-    if (redirectToLogin === true) {
-      return <Redirect to='/login' />
-    }
-
     return(
       <div className="valign-wrapper" style={{ 
         height: "100vh", 

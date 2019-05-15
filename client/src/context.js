@@ -9,7 +9,8 @@ const reducer = (state, action) => {
       return;
   }
 };
-const initialState = { currentUser: null };
+
+const initialState = { currentUser: null};
 
 const Context = React.createContext(initialState);
 
@@ -20,6 +21,7 @@ function UserContext(props) {
       {props.children}
     </Context.Provider>
   );
+
 }
 
 export { UserContext, Context };

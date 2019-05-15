@@ -11,15 +11,15 @@ class Register extends React.Component {
     redirectToDashboard: false
   };
 
-  // componentDidMount() {
-  //   const token = localStorage.getItem('current_user_token');
+  componentDidMount() {
+    const token = localStorage.getItem('current_user_token');
 
-  //   if (token) {
-  //     API.validateToken(token)
-  //       .then(this.setState({redirectToDashboard: true}))
-  //       .catch(() => localStorage.removeItem('current_user_token'));
-  //   }
-  // }
+    if (token) {
+      API.validateToken(token)
+        .then(this.setState({redirectToDashboard: true}))
+        .catch(() => localStorage.removeItem('current_user_token'));
+    }
+  }
 
   handleChange = e => {
     this.setState({ [e.target.id]: e.target.value });
@@ -30,13 +30,12 @@ class Register extends React.Component {
       email: this.state.email,
       password: this.state.password
     }
-    console.log(userData);
     API.login(userData).then(res => {
-      console.log(res);
       localStorage.setItem('current_user_token', res.data.token);
+      console.log(userData);
       dispatch({
         type: 'set_current_user',
-        value: { email: res.data.email, name: res.data.name },
+        value: { userData },
       });
     })
     .then(this.setState({redirectToDashboard: true}))
