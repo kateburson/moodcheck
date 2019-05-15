@@ -1,38 +1,48 @@
 const db = require("../models");
+var jwt = require('jsonwebtoken');
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
-// Defining methods for the booksController
 module.exports = {
   login: function(req, res) {
-    const password = req.body.password;
-    bcrypt.compare(password, hash, function(err, res) {
-      if(res === true) {
-        db.User
-        .findOne({email: req.body.email})
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err));
+    db.User.find({ email: req.body.email }).then(u => {
+      if (!u) {
+        res.status(400).send({ msg: 'Invalid Email or Password' });
       } else {
-        res.json("incorrect password");
-      }  
+        bcrypt.compare(req.body.password, u.password, function(err, bRes) {
+          if (!bRes) {
+            res.status(400).send({ msg: 'Invalid Email or Password' });
+          } else {
+          var token = jwt.sign({ email: u.email }, 'shhhhh');
+          res.json({ email: u.email, token: token });
+          }
+        });
+      }
     });
-    
   },
   register: function(req, res) {
-    const password = req.body.password;
-    bcrypt.genSalt(saltRounds, function(err, salt) {
-      bcrypt.hash(password, salt, function(err, hash) {
-        const newUser = {
-          name: req.body.name,
-          email: req.body.email,
-          password: hash
-        }
-        db.User
-        .create(newUser)
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err));
+    db.User.find({ email: req.body.email }).then(u => {
+      if (u) res.status(400).send({ msg: 'Invalid Email or Password' });
+      bcrypt.genSalt(saltRounds, function(err, salt) {
+        bcrypt.hash(req.body.password, salt, function(err, hash) {
+          db.User.create({
+            email: req.body.email,
+            password: hash,
+          }).then(function(user) {
+            var token = jwt.sign({ email: user.email }, 'shhhhh');
+            res.json({ email: user.email, token: token });
+          });
+        });
       });
     });
-    
+  },
+  validateToken: function(req, res) {
+    return jwt.verify(req.body.token, 'shhhhh', function(err, decoded) {
+      if (err) {
+        return res.status(400).send({ msg: 'your token is bad!' });
+      }
+      return db.User.find({ email: decoded.email}).then(u =>
+        res.status(200).send({user: u}));
+    });
   }
 };
