@@ -1,21 +1,16 @@
 import React from "react";
-import API from "../utils/API";
-import { UserContext, Context } from "../context";
+import SideNav from "../components/sideNav";
+import Navbar from "../components/navbar";
+// import API from "../utils/API";
 
 class Dashboard extends React.Component {
   render() {
     return(
-      <Context.Consumer>
-        {state => {
-          console.log('current user:', this.state);
-          return(
-            <div>
-              <h1>Dashboard</h1>
-              <h3>Hey, {this.state}</h3>
-            </div>
-          )
-        }}
-      </Context.Consumer>
+      <div>
+        <SideNav />
+        <Navbar />
+        <h1>Dashboard</h1>
+      </div>
     )
   }
 }

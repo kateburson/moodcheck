@@ -1,58 +1,58 @@
-import React from "react";
+import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 import API from "../utils/API";
-import { Context } from '../context';
+import { AccountConsumer } from "../context";
 
-class Register extends React.Component {
+class Login extends Component {
 
   state = {
     email: "",
     password: "",
-    redirectToDashboard: false
+    redirectToDashboard: false,
   };
 
-  componentDidMount() {
-    const token = localStorage.getItem('current_user_token');
+  // componentDidMount() {
+  //   const token = localStorage.getItem("current_user_token");
 
-    if (token) {
-      API.validateToken(token)
-        .then(this.setState({redirectToDashboard: true}))
-        .catch(() => localStorage.removeItem('current_user_token'));
-    }
-  }
+  //   if (token) {
+  //     API.validateToken(token)
+  //       .then(this.props.history.push({
+  //         pathname: "/dashboard",
+  //         state: { currentUser: this.state.currentUser }
+  //       }))
+  //       .catch(() => localStorage.removeItem("current_user_token"));
+  //   }
+  // }
 
   handleChange = e => {
     this.setState({ [e.target.id]: e.target.value });
-  };
+  }
 
-  login = dispatch => {
+  login = setCurrentUser => {
     const userData = {
       email: this.state.email,
       password: this.state.password
     }
-    API.login(userData).then(res => {
-      localStorage.setItem('current_user_token', res.data.token);
-      console.log(userData);
-      dispatch({
-        type: 'set_current_user',
-        value: { userData },
-      });
+    console.log("user data:", userData);
+    API.login(userData)
+    .then(res => {
+      console.log(res[0]);
+      localStorage.setItem("current_user_token", res.data.token);
+      const currentUser = {
+        name: res[0].name,
+        email: res[0].email
+      }
+      console.log(currentUser);
+      setCurrentUser({currentUser});
     })
-    .then(this.setState({redirectToDashboard: true}))
+    .then(<Redirect to="/dashboard" />)
     .catch(err => console.log(err));
-  };
+  }
 
   render() {
-    const { redirectToDashboard } = this.state
-
-    if (redirectToDashboard === true) {
-      return <Redirect to='/dashboard' />
-    }
-
     return(
-      <Context.Consumer>
-        {value => {
-          // console.log(value);
+      <AccountConsumer>
+        { value => {
           return (
             <div className="valign-wrapper" style={{ 
               height: "100vh", 
@@ -63,7 +63,7 @@ class Register extends React.Component {
               <div className="row">
                 <div className="col s12 l6">
                   <h1>Login</h1>
-                  <p>Don't have an account?
+                  <p>Don"t have an account?
                     <Link to="/register"> Register</Link>
                   </p>  
                 </div>
@@ -96,18 +96,18 @@ class Register extends React.Component {
                   className="btn btn-large black white-text hoverable waves-effect waves-light"
                   disabled={!Boolean(this.state.email && this.state.password)}
                   type="button"
-                  onClick={() => this.login(value.dispatch)}
+                  onClick={() => this.login(value.updateAccount)}
                   >Login
                 </button>
               </form>
             </div>
           </div> 
           </div>
-        );
+          )
         }}
-      </Context.Consumer>
+      </AccountConsumer>
     )
   }
 }
 
-export default Register;
+export default { Login };
