@@ -1,7 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import API from "../utils/API";
 
 class Landing extends React.Component {
+
+  componentDidMount() {
+    const token = localStorage.getItem("current_user_token");
+
+    if (token) {
+      API.validateToken(token)
+        .then(this.setState({redirectToDashboard: true}))
+        .catch(() => localStorage.removeItem("current_user_token"));
+    }
+  }
+
   render() {
     return (
       <div className="valign-wrapper" style={{ 

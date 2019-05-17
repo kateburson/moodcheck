@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 import API from "../utils/API";
-import  AccountProvider, { AccountConsumer } from "../context";
+import { AccountConsumer } from "../context";
 
 class Login extends Component {
 

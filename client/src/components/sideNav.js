@@ -4,11 +4,6 @@ import { Link } from "react-router-dom";
 import { AccountConsumer } from '../context';
 
 class SideNav extends Component {
-
-  componentDidMount() {
-    
-  }
-
   render() {
   return (
     <AccountConsumer>

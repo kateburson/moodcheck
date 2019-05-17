@@ -9,6 +9,7 @@ class Register extends React.Component {
     email: "",
     password: "",
     password2: "",
+    redirectToLogin: false
   };
 
   handleChange = e => {
@@ -23,7 +24,8 @@ class Register extends React.Component {
         email: this.state.email,
         password: this.state.password
       }
-      API.register(userData).then(<Redirect to='/login' />);
+      API.register(userData)
+      .then(this.setState({redirectToLogin: true}));
     } else {
       alert("Passwords do not match");
     }
@@ -31,6 +33,12 @@ class Register extends React.Component {
 
 
   render() {
+    const { redirectToLogin } = this.state
+
+    if (redirectToLogin === true) {
+      return <Redirect to="/login" />
+    }
+
     return(
       <div className="valign-wrapper" style={{ 
         height: "100vh", 

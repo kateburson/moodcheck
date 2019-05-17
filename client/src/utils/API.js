@@ -11,7 +11,7 @@ export default {
   validateToken: function(t) {
     return axios.post("/api/users/validate", { token: t })
   },
-  findAll: function() {
-    return axios.get("/journal/:id")
+  newEntry: function(entry) {
+    return axios.post("/api/journal/:id", entry)
   } 
 };

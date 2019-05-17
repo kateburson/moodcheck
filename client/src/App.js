@@ -7,7 +7,7 @@ import Register from "./pages/register";
 import Login from "./pages/login";
 import Dashboard from "./pages/dashboard";
 // import Checkpoints from "./components/pages/Checkpoints";
-// import Journal from "./components/pages/Journal";
+import Journal from "./pages/journal";
 // import History from "./components/pages/History";
 // import Charts from "./components/pages/Charts";
 
@@ -26,7 +26,7 @@ class App extends React.Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/dashboard" component={Dashboard} />
               {/* <PrivateRoute exact path="/checkpoints" component={Checkpoints} /> */}
-              {/* <PrivateRoute exact path="/journal" component={Journal} /> */}
+              <Route exact path="/journal" component={Journal} />
               {/* <PrivateRoute exact path="/history" component={History} /> */}
               {/* <PrivateRoute exact path="/charts" component={Charts} /> */}
             </div>
