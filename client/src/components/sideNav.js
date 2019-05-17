@@ -1,19 +1,21 @@
-import React from "react";
+import React, { useContext } from 'react';
 import { slide as Menu } from "react-burger-menu";
 import { Link } from "react-router-dom";
-
-import AccountConsumer from "../context";
+import { Context } from '../context';
 
 const SideNav = props => {
+  const {
+    state: {currentUser},
+  } = useContext(Context);
   return (
-    <AccountConsumer>
-      {({ username }) => {
+    <Context.Consumer>
+      { value => {
         return(
         <div>
           <Menu>
             <div className="row">
               <h5 className="left-align" style={{lineHeight: "1.5em"}}>
-                <b>Hey there,</b><br />{username}
+                <b>Hey there, {currentUser}</b>
               </h5>
             </div>
 
@@ -42,7 +44,7 @@ const SideNav = props => {
                 background: "#FDFFC3",
                 color: "black"
               }}
-              onClick={this.logout}
+              // onClick={this.logout}
               className="btn waves-effect waves-light hoverable"
             >
               Logout
@@ -51,7 +53,7 @@ const SideNav = props => {
         </div>
         )
       }}
-    </AccountConsumer>
+    </Context.Consumer>
   )
 }
 

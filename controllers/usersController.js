@@ -7,6 +7,7 @@ module.exports = {
   login: function(req, res) {
     db.User.find({ email: req.body.email }).then(u => {
       console.log(u ,Boolean(!u[0].email));
+      console.log("name:", u[0].name);
       if (!u[0].email) {
         res.status(400).send({ msg: 'Invalid Email or Password' });
       } else {
@@ -18,7 +19,7 @@ module.exports = {
             res.status(400).send({ msg: 'Invalid Email or Password' });
           } else {
           var token = jwt.sign({ email: u.email }, 'shhhhh');
-          res.json({ email: u.email, token: token });
+          res.json({ email: u[0].email, name: u[0].name, token: token });
           }
         });
       }
@@ -54,4 +55,5 @@ module.exports = {
       );
     });
   }
+  
 };

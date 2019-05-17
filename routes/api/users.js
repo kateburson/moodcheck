@@ -9,7 +9,7 @@ router.route("/login")
 router.route("/register")
   .post(usersController.register)
 
-router.route('/validate')
+router.route("/validate")
   .post(usersController.validateToken);
-
+  
 module.exports = router;
