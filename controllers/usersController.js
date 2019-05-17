@@ -19,7 +19,7 @@ module.exports = {
             res.status(400).send({ msg: 'Invalid Email or Password' });
           } else {
           var token = jwt.sign({ email: u.email }, 'shhhhh');
-          res.json({ email: u[0].email, name: u[0].name, token: token });
+          res.json({ id: u[0].id, email: u[0].email, name: u[0].name, token: token });
           }
         });
       }

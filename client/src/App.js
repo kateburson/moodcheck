@@ -12,7 +12,7 @@ import Dashboard from "./pages/dashboard";
 // import History from "./components/pages/History";
 // import Charts from "./components/pages/Charts";
 
-import { UserContext } from './context';
+import AccountProvider from './context';
 
 
 class App extends React.Component {
@@ -20,7 +20,7 @@ class App extends React.Component {
     return (
       <div>
         <Router>
-          <UserContext >
+          <AccountProvider >
             <div className="App">
               <Route exact path="/" component={Landing} />
               <Route exact path="/register" component={Register} />
@@ -34,7 +34,7 @@ class App extends React.Component {
                 {/* <PrivateRoute exact path="/charts" component={Charts} /> */}
               {/* </Switch> */}
             </div>
-          </UserContext>
+          </AccountProvider>
         </Router>
       </div>
     );

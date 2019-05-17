@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 import API from "../utils/API";
-import { UserContext, Context } from '../context';
+import  AccountProvider, { AccountConsumer } from '../context';
 
-class Login extends React.Component {
+class Login extends Component {
 
   state = {
     email: "",
@@ -26,20 +26,21 @@ class Login extends React.Component {
     this.setState({ [e.target.id]: e.target.value });
   };
 
-  login = dispatch => {
+  login = setCurrentUser=> {
     const userData = {
       email: this.state.email,
       password: this.state.password,
-      name: ""
     }
     API.login(userData).then(res => {
       localStorage.setItem('current_user_token', res.data.token);
-      console.log(res);
-      dispatch({
-        type: 'set_current_user',
-        value: { name: res.data.name, id: res.data._id },
-      });
-      console.log(UserContext.state);
+      console.log("Database Response:", res);
+      setCurrentUser({
+        currentUser : {
+          name: res.data.name,
+          email: res.data.email,
+          id: res.data.id
+        }
+      }); 
     })
     .then(this.setState({redirectToDashboard: true}))
     .catch(err => console.log(err));
@@ -53,7 +54,7 @@ class Login extends React.Component {
     }
 
     return(
-      <Context.Consumer>
+      <AccountConsumer>
         {value => {
           // console.log(value);
           return (
@@ -99,7 +100,7 @@ class Login extends React.Component {
                   className="btn btn-large black white-text hoverable waves-effect waves-light"
                   disabled={!Boolean(this.state.email && this.state.password)}
                   type="button"
-                  onClick={() => this.login(value.dispatch)}
+                  onClick={() => this.login(value.setCurrentUser)}
                   >Login
                 </button>
               </form>
@@ -108,7 +109,7 @@ class Login extends React.Component {
           </div>
         );
         }}
-      </Context.Consumer>
+      </AccountConsumer>
     )
   }
 }

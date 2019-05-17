@@ -1,21 +1,19 @@
-import React, { useContext } from 'react';
+import React, { Component } from 'react';
 import { slide as Menu } from "react-burger-menu";
 import { Link } from "react-router-dom";
-import { Context } from '../context';
+import { AccountConsumer } from '../context';
 
-const SideNav = props => {
-  const {
-    state: {currentUser},
-  } = useContext(Context);
+class SideNav extends Component {
+  render() {
   return (
-    <Context.Consumer>
+    <AccountConsumer>
       { value => {
         return(
         <div>
           <Menu>
             <div className="row">
               <h5 className="left-align" style={{lineHeight: "1.5em"}}>
-                <b>Hey there, {currentUser}</b>
+                <b>Hey there, {JSON.stringify(value.currentUser)}</b>
               </h5>
             </div>
 
@@ -53,8 +51,9 @@ const SideNav = props => {
         </div>
         )
       }}
-    </Context.Consumer>
+    </AccountConsumer>
   )
+  }
 }
 
 export default SideNav;
