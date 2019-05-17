@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 import API from "../utils/API";
-import  AccountProvider, { AccountConsumer } from '../context';
+import  AccountProvider, { AccountConsumer } from "../context";
 
 class Login extends Component {
 
@@ -13,12 +13,12 @@ class Login extends Component {
   };
 
   componentDidMount() {
-    const token = localStorage.getItem('current_user_token');
+    const token = localStorage.getItem("current_user_token");
 
     if (token) {
       API.validateToken(token)
         .then(this.setState({redirectToDashboard: true}))
-        .catch(() => localStorage.removeItem('current_user_token'));
+        .catch(() => localStorage.removeItem("current_user_token"));
     }
   }
 
@@ -32,15 +32,16 @@ class Login extends Component {
       password: this.state.password,
     }
     API.login(userData).then(res => {
-      localStorage.setItem('current_user_token', res.data.token);
+      localStorage.setItem("current_user_token", res.data.token);
       console.log("Database Response:", res);
-      setCurrentUser({
-        currentUser : {
+      const currentUser = {
           name: res.data.name,
           email: res.data.email,
           id: res.data.id
         }
-      }); 
+      localStorage.setItem("name", currentUser.name);
+      localStorage.setItem("email", currentUser.email);
+      localStorage.setItem("id", currentUser.id);
     })
     .then(this.setState({redirectToDashboard: true}))
     .catch(err => console.log(err));
@@ -50,7 +51,7 @@ class Login extends Component {
     const { redirectToDashboard } = this.state
 
     if (redirectToDashboard === true) {
-      return <Redirect to='/dashboard' />
+      return <Redirect to="/dashboard" />
     }
 
     return(
@@ -67,7 +68,7 @@ class Login extends Component {
               <div className="row">
                 <div className="col s12 l6">
                   <h1>Login</h1>
-                  <p>Don't have an account?
+                  <p>Don"t have an account?
                     <Link to="/register"> Register</Link>
                   </p>  
                 </div>

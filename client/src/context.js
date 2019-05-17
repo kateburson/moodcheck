@@ -8,9 +8,9 @@ class AccountProvider extends Component {
 
   state = {
     currentUser: {
-      name: "",
-      email: "",
-      id: ""
+      name: localStorage.getItem("name"),
+      email: localStorage.getItem("email"),
+      id: localStorage.getItem("id")
     },
     setCurrentUser: userData => this.setCurrentUser(userData)
   }

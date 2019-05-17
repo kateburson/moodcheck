@@ -1,11 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import './App.css';
 import Landing from "./pages/landing";
 import Register from "./pages/register";
 import Login from "./pages/login";
-// import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./pages/dashboard";
 // import Checkpoints from "./components/pages/Checkpoints";
 // import Journal from "./components/pages/Journal";
@@ -26,13 +25,10 @@ class App extends React.Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/dashboard" component={Dashboard} />
-              {/* <Switch> */}
-         
-                {/* <PrivateRoute exact path="/checkpoints" component={Checkpoints} /> */}
-                {/* <PrivateRoute exact path="/journal" component={Journal} /> */}
-                {/* <PrivateRoute exact path="/history" component={History} /> */}
-                {/* <PrivateRoute exact path="/charts" component={Charts} /> */}
-              {/* </Switch> */}
+              {/* <PrivateRoute exact path="/checkpoints" component={Checkpoints} /> */}
+              {/* <PrivateRoute exact path="/journal" component={Journal} /> */}
+              {/* <PrivateRoute exact path="/history" component={History} /> */}
+              {/* <PrivateRoute exact path="/charts" component={Charts} /> */}
             </div>
           </AccountProvider>
         </Router>

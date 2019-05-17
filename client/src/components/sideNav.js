@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 import { AccountConsumer } from '../context';
 
 class SideNav extends Component {
+
+  componentDidMount() {
+    
+  }
+
   render() {
   return (
     <AccountConsumer>
@@ -13,7 +18,7 @@ class SideNav extends Component {
           <Menu>
             <div className="row">
               <h5 className="left-align" style={{lineHeight: "1.5em"}}>
-                <b>Hey there, {JSON.stringify(value.currentUser)}</b>
+                <b>Hey there, {value.currentUser.name.split(" ")[0]}</b>
               </h5>
             </div>
 
