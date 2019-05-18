@@ -4,19 +4,11 @@ module.exports = {
   populateJournal: function(req, res) {
     db.User
     .findOne({ _id : req.params.id })
-    // .aggregate([{
-    //   $lookup: {
-    //       from: "journals",
-    //       localField: "journal",
-    //       foreignField: "_id",
-    //       as: "journal"
-    //   }
-    // }])
     .populate({
       path:"journal",
       model: "journal"
     })
-    // .sort({ date: -1 })
+    .sort({ date: -1 })
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
   },
