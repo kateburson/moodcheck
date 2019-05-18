@@ -8,7 +8,7 @@ const userSchema = new Schema({
   date: { type: Date, default: Date.now },
   journal: [{
     type: Schema.Types.ObjectId,
-    ref: "Journal"
+    ref: "journal"
   }]
 });
 

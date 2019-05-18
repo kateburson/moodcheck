@@ -16,6 +16,7 @@ class Journal extends React.Component {
   componentDidMount = () => {
     const id = localStorage.getItem("id");
     API.populateJournal(id)
+    .then(res => console.log(res.data));
   }
 
   handleChange = e => {
@@ -46,14 +47,14 @@ class Journal extends React.Component {
               <div className="row">
                 <form className="col s12">
                   <div className="row">
-                    <div class="input-field col s12">
+                    <div className="input-field col s12">
                       <input 
                         id="title" 
                         type="text" 
                         value={this.state.title}
                         onChange={this.handleChange}
                       />
-                      <label for="title">Title</label>
+                      <label htmlFor="title">Title</label>
                     </div>
                   </div>
                 </form>
@@ -65,11 +66,11 @@ class Journal extends React.Component {
                     <div className="input-field col s12">
                       <textarea 
                         id="body" 
-                        class="materialize-textarea"
+                        className="materialize-textarea"
                         value={this.state.body}
                         onChange={this.handleChange}
                       ></textarea>
-                      <label for="body">Journal Entry</label>
+                      <label htmlFor="body">Journal Entry</label>
                     </div>
                   </div>
                 </form>
@@ -94,14 +95,8 @@ class Journal extends React.Component {
 
             </CollapsibleItem>
 
-            <CollapsibleItem header="Better safe than sorry. That's my motto." icon="filter_drama">
-            Better safe than sorry. That's my motto.
-            </CollapsibleItem>
-            <CollapsibleItem header="Yeah, you do seem to have a little 'shit creek' ac…" icon="place">
-            Yeah, you do seem to have a little 'shit creek' action going.
-            </CollapsibleItem>
-            <CollapsibleItem header="You know, FYI, you can buy a paddle. Did you not p…" icon="whatshot">
-            You know, FYI, you can buy a paddle. Did you not plan for this contingency?
+            <CollapsibleItem header="Header">
+            Body.
             </CollapsibleItem>
           </Collapsible>
 

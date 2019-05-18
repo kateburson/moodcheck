@@ -61,48 +61,48 @@ class Register extends React.Component {
             </p>  
           </div>
         <form className="col s12 l6">
-          <div class="row">
-            <div class="input-field col s12">
+          <div className="row">
+            <div className="input-field col s12">
               <input 
                 id="name" 
                 type="text" 
-                class="validate" 
+                className="validate" 
                 onChange={this.handleChange}
                 value={this.state.name}
               />
               <label for="name">Name</label>
             </div>
           </div>
-          <div class="row">
-            <div class="input-field col s12">
+          <div className="row">
+            <div className="input-field col s12">
               <input 
                 id="email" 
                 type="email" 
-                class="validate" 
+                className="validate" 
                 onChange={this.handleChange}
                 value={this.state.email}
               />
               <label for="email">Email</label>
             </div>
           </div>
-          <div class="row">
-            <div class="input-field col s12">
+          <div className="row">
+            <div className="input-field col s12">
               <input 
                 id="password" 
                 type="password" 
-                class="validate" 
+                className="validate" 
                 onChange={this.handleChange}
                 value={this.state.password}
               />
               <label for="password">Password</label>
             </div>
           </div>
-          <div class="row">
-            <div class="input-field col s12">
+          <div className="row">
+            <div className="input-field col s12">
               <input 
                 id="password2" 
                 type="password" 
-                class="validate" 
+                className="validate" 
                 onChange={this.handleChange}
                 value={this.state.password2}
               />

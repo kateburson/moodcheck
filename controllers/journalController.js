@@ -2,11 +2,21 @@ const db = require("../models");
 
 module.exports = {
   populateJournal: function(req, res) {
-    const id = req.params.id;
     db.User
-    .findOne({_id : id})
-    .populate('Journal')
-    .sort({ date: -1 })
+    .findOne({ _id : req.params.id })
+    // .aggregate([{
+    //   $lookup: {
+    //       from: "journals",
+    //       localField: "journal",
+    //       foreignField: "_id",
+    //       as: "journal"
+    //   }
+    // }])
+    .populate({
+      path:"journal",
+      model: "journal"
+    })
+    // .sort({ date: -1 })
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
   },
@@ -14,9 +24,7 @@ module.exports = {
     db.Journal.create(req.body)
     .then(function(data) {
       db.User.update({_id : req.params.id}, {$push: {journal: data._id}})
-      .then(function(dbModel) {
-        res.json(dbModel);
-      })
+      .then(dbModel => res.json(dbModel))
     })
     .catch(err => res.status(422).json(err));
   },
