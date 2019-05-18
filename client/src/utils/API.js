@@ -1,5 +1,4 @@
 import axios from "axios";
-import { get } from "mongoose";
 
 export default {
   register: function(userData) {
@@ -13,5 +12,8 @@ export default {
   },
   newEntry: function(entry, id) {
     return axios.post("/api/journal/" + id, entry)
-  } 
+  },
+  populateJournal: function(id) {
+    return axios.get("/api/journal/" + id)
+  }
 };

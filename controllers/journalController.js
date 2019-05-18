@@ -10,10 +10,10 @@ module.exports = {
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
   },
-  create: function(req, res) {
+  newEntry: function(req, res) {
     db.Journal.create(req.body)
     .then(function(data) {
-      db.User.update({_id : req.params.id}, {journal: data._id}, {new: true})
+      db.User.update({_id : req.params.id}, {$push: {journal: data._id}})
       .then(function(dbModel) {
         res.json(dbModel);
       })

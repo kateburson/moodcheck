@@ -13,6 +13,11 @@ class Journal extends React.Component {
     body: ""
   }
 
+  componentDidMount = () => {
+    const id = localStorage.getItem("id");
+    API.populateJournal(id)
+  }
+
   handleChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
@@ -25,6 +30,7 @@ class Journal extends React.Component {
     }
     const id = localStorage.getItem("id");
     API.newEntry(entry, id)
+    .then(this.setState({title: "", body: ""}))
   }
 
   render() {
@@ -44,6 +50,7 @@ class Journal extends React.Component {
                       <input 
                         id="title" 
                         type="text" 
+                        value={this.state.title}
                         onChange={this.handleChange}
                       />
                       <label for="title">Title</label>
@@ -59,6 +66,7 @@ class Journal extends React.Component {
                       <textarea 
                         id="body" 
                         class="materialize-textarea"
+                        value={this.state.body}
                         onChange={this.handleChange}
                       ></textarea>
                       <label for="body">Journal Entry</label>
@@ -76,10 +84,10 @@ class Journal extends React.Component {
                     background: "#FDFFC3",
                     color: "black"
                   }}
-                  // onClick={this.newEntry}
                   className="btn waves-effect waves-light hoverable"
                   type="button"
                   onClick={this.handleSubmit}
+                  disabled={!Boolean(this.state.title && this.state.body)}
                 >
                   Submit
               </button>

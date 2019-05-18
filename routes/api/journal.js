@@ -5,7 +5,7 @@ const journalController = require("../../controllers/journalController");
 // Matches with "/api/journal/:id"
 router.route("/:id")
   .get(journalController.populateJournal)
-  .post(journalController.create)
+  .post(journalController.newEntry)
   .put(journalController.update)
   .delete(journalController.remove)
 
