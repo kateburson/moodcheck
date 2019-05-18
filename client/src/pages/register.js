@@ -40,6 +40,13 @@ class Register extends React.Component {
     }
 
     return(
+      <div 
+        background="../../background.png"
+        style={{
+          backgroundImage: "url('../../background.png')",
+          backgroundRepeat: "tile"
+        }}
+      >
       <div className="valign-wrapper" style={{ 
         height: "100vh", 
         // background: "#FDFFC3",
@@ -111,6 +118,7 @@ class Register extends React.Component {
         </form>
       </div>
      </div> 
+    </div>
     </div>
     )
   }

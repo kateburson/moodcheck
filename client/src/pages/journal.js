@@ -23,7 +23,8 @@ class Journal extends React.Component {
       title: this.state.title,
       body: this.state.body
     }
-    API.newEntry(entry)
+    const id = localStorage.getItem("id");
+    API.newEntry(entry, id)
   }
 
   render() {

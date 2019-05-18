@@ -59,6 +59,13 @@ class Login extends Component {
         {value => {
           // console.log(value);
           return (
+            <div 
+              background="../../background.png"
+              style={{
+                backgroundImage: "url('../../background.png')",
+                backgroundRepeat: "tile"
+              }}
+            >
             <div className="valign-wrapper" style={{ 
               height: "100vh", 
               // background: "#FDFFC3",
@@ -107,6 +114,7 @@ class Login extends Component {
               </form>
             </div>
           </div> 
+          </div>
           </div>
         );
         }}

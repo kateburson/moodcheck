@@ -11,10 +11,14 @@ module.exports = {
     .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    db.Journal
-      .create(req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+    db.Journal.create(req.body)
+    .then(function(data) {
+      db.User.update({_id : req.params.id}, {journal: data._id}, {new: true})
+      .then(function(dbModel) {
+        res.json(dbModel);
+      })
+    })
+    .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
     db.Journal
