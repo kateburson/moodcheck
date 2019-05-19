@@ -95,13 +95,13 @@ class Journal extends React.Component {
                   className="btn waves-effect waves-light hoverable"
                   type="button"
                   onClick={this.handleSubmit}
-                  disabled={!Boolean(this.state.title && this.state.body)}
+                  disabled={!Boolean(this.state.body)}
                 >
                   Submit
               </button>
             </CollapsibleItem>
           </Collapsible>
-          
+
           <Collapsible accordion={false}>
             {this.state.journal.map((entry) => 
             <CollapsibleItem 

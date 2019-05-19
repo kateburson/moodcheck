@@ -5,17 +5,23 @@ class Navbar extends Component {
   render() {
     return (
       <div className="navbar-fixed">
-        <nav className="z-depth-0" style={{background: "#FDFFC3"}}>
+        <nav className="z-depth-0" style={{background: "#FDFFC3", height:"60px"}}>
           <div 
-            className="nav-wrapper"
+            className="nav-wrapper center-align"
           >
             <Link
-              to="/"
-              className="col s5 center black-text"
+              to="/dashboard"
+              className="center"
             >
-              <h5 style={{
-                fontWeight: "bold"
-              }}>MoodCheck</h5>
+              <img 
+                src="../../logo.png"
+                style={{
+                  height: "30px",
+                  marginTop: "10px"
+                }}
+                alt="MoodCheck Logo"
+              />
+
             </Link>
           </div>
         </nav>

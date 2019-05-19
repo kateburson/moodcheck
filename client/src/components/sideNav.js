@@ -1,10 +1,26 @@
 import React, { Component } from 'react';
 import { slide as Menu } from "react-burger-menu";
-import { Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { AccountConsumer } from '../context';
 
 class SideNav extends Component {
+
+  state = {
+    redirectToLogin: false
+  }
+
+  logout = e => {
+    e.preventDefault();
+    localStorage.clear();
+    this.setState({redirectToLogin: true});
+  }
+
   render() {
+    const { redirectToLogin } = this.state
+
+    if (redirectToLogin === true) {
+      return <Redirect to="/login" />
+    }
   return (
     <AccountConsumer>
       { value => {
@@ -42,7 +58,7 @@ class SideNav extends Component {
                 background: "#FDFFC3",
                 color: "black"
               }}
-              // onClick={this.logout}
+              onClick={this.logout}
               className="btn waves-effect waves-light hoverable"
             >
               Logout
