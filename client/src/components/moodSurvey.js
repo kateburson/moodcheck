@@ -39,11 +39,12 @@ class MoodSurvey extends React.Component {
       <div 
         style={{
           boxShadow: "5px 5px 20px 5px #eee",
-          padding: "25px"
+          padding: "25px",
+          marginTop: "25px"
         }}
       >
         <h5><b>Mood Survey</b></h5>
-          <p>Mood (high): {this.state.high}</p>
+          <p>Mood (high)</p>
           <Range  
             min="1" 
             max="10" 
@@ -52,7 +53,7 @@ class MoodSurvey extends React.Component {
             onChange={this.handleChange}
           />
 
-          <p>Mood (low): {this.state.low}</p>
+          <p>Mood (low)</p>
           <Range 
             min="1" 
             max="10" 
@@ -102,7 +103,7 @@ class MoodSurvey extends React.Component {
             background: "#FDFFC3",
             color: "black"
           }}
-          className="btn waves-effect waves-light hoverable"
+          className="btn waves-effect waves-light"
           type="button"
           onClick={this.handleSubmit}
           disabled={!Boolean(this.state.high && this.state.low)}

@@ -2,9 +2,7 @@ import React from "react";
 import { Collapsible, CollapsibleItem } from "react-materialize";
 import API from "../utils/API";
 
-import SideNav from "../components/sideNav";
-import Navbar from "../components/navbar";
-
+import Nav from "../components/sideNav";
 
 class Journal extends React.Component {
 
@@ -44,8 +42,7 @@ class Journal extends React.Component {
   render() {
     return(
       <div style={{height: "100vh", width: "100vw"}}>
-        <SideNav />
-        <Navbar />
+        <Nav />
         <div className="container">
           <h3>Journal</h3>
           <Collapsible accordion={false}>

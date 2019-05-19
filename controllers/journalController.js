@@ -11,7 +11,7 @@ module.exports = {
     .sort({ date: -1 })
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
-  },
+  }, 
   newEntry: function(req, res) {
     db.Journal.create(req.body)
     .then(function(data) {
