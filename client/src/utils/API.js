@@ -15,5 +15,8 @@ export default {
   },
   populateJournal: function(id) {
     return axios.get("/api/journal/" + id)
+  },
+  newMood: function(moodSurvey, id) {
+    return axios.post("/api/mood/" + id, moodSurvey)
   }
 };

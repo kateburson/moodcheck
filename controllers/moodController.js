@@ -1,7 +1,7 @@
 const db = require("../models");
 
 module.exports = {
-  populateJournal: function(req, res) {
+  findMoods: function(req, res) {
     db.User
     .findOne({ _id : req.params.id })
     .populate({
@@ -12,22 +12,22 @@ module.exports = {
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
   },
-  newEntry: function(req, res) {
-    db.Journal.create(req.body)
+  newMood: function(req, res) {
+    db.Mood.create(req.body)
     .then(function(data) {
-      db.User.updateOne({_id : req.params.id}, {$push: {journal: data._id}})
+      db.User.updateOne({_id : req.params.id}, {$push: {mood: data._id}})
       .then(dbModel => res.json(dbModel))
     })
     .catch(err => res.status(422).json(err));
   },
-  update: function(req, res) {
-    db.Journal
+  updateMood: function(req, res) {
+    db.Mood
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  remove: function(req, res) {
-    db.Journal
+  removeMood: function(req, res) {
+    db.Mood
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))

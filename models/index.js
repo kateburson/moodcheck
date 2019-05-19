@@ -1,4 +1,5 @@
 module.exports = {
   User: require("./user"),
-  Journal: require("./journal")
+  Journal: require("./journal"),
+  Mood: require("./mood")
 };

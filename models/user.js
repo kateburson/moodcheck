@@ -9,6 +9,10 @@ const userSchema = new Schema({
   journal: [{
     type: Schema.Types.ObjectId,
     ref: "journal"
+  }],
+  mood: [{
+    type: Schema.Types.ObjectId,
+    ref: "mood"
   }]
 });
 

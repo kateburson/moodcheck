@@ -1,6 +1,7 @@
 
 import React from "react";
 import { Range } from "react-materialize";
+import API from "../utils/API";
 
 class MoodSurvey extends React.Component {
 
@@ -20,8 +21,17 @@ class MoodSurvey extends React.Component {
     this.setState({ [e.target.id]: value });
   }
 
-  handleSubmit = () => {
-    console.table(this.state);
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log(this.state)
+    const id = localStorage.getItem("id");
+    const moodSurvey = {
+      high: this.state.high,
+      low: this.state.low,
+      medication: this.state.medication,
+      exercise: this.state.exercise 
+    }
+    API.newMood(moodSurvey, id)
   }
 
   render() {
