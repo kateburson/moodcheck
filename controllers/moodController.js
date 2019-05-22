@@ -5,8 +5,8 @@ module.exports = {
     db.User
     .findOne({ _id : req.params.id })
     .populate({
-      path:"journal",
-      model: "journal"
+      path:"mood",
+      model: "mood"
     })
     .sort({ date: -1 })
     .then(dbModel => res.json(dbModel))

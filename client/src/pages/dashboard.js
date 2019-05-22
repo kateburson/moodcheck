@@ -14,11 +14,20 @@ import CollapsibleItem from "react-materialize/lib/CollapsibleItem";
 class Dashboard extends React.Component {
 
   state = {
-    journal: []
+    journal: [],
+    mood: []
   }
 
   componentDidMount = () => {
     const id = localStorage.getItem("id");
+
+    API.findMoods(id)
+    .then(res => {
+      let result = res.data.mood.filter(mood => moment(mood.date).format("MMM DD YYYY") === moment().format("MMM DD YYYY"));
+      console.log(result);
+      this.setState({mood: result});
+    })
+
     API.populateJournal(id)
     .then(res => {
       let result = res.data.journal.filter(entry => moment(entry.date).format("MMM DD YYYY") === moment().format("MMM DD YYYY"));
@@ -27,15 +36,15 @@ class Dashboard extends React.Component {
     })
   }
 
-  componentDidUpdate = () => {
-    const id = localStorage.getItem("id");
-    API.populateJournal(id)
-    .then(res => {
-      let result = res.data.journal.filter(entry => moment(entry.date).format("MMM DD YYYY") === moment().format("MMM DD YYYY"));
-      console.log(result);
-      this.setState({journal: result});
-    })
-  }
+  // componentDidUpdate = () => {
+  //   const id = localStorage.getItem("id");
+  //   API.populateJournal(id)
+  //   .then(res => {
+  //     let result = res.data.journal.filter(entry => moment(entry.date).format("MMM DD YYYY") === moment().format("MMM DD YYYY"));
+  //     console.log(result);
+  //     this.setState({journal: result});
+  //   })
+  // }
 
   render() {
     return(
@@ -45,7 +54,7 @@ class Dashboard extends React.Component {
           <div className="row">
             <div className="col s12 l4" 
               style={{
-                boxShadow: "2px 2px 5px 2.5px #ddd",
+                boxShadow: "10px 10px 20px 5px #eee",
                 padding: "25px",
                 marginTop: "25px",
               }}>
@@ -63,7 +72,7 @@ class Dashboard extends React.Component {
               <div className="divider"></div>
               {this.state.journal.map((entry) => 
               <div>
-              <p><b>{entry.date.split("T")[0] + " " + entry.title}</b></p>
+              <p><b>{entry.title}</b></p>
               <p>{entry.body}</p>
               <div className="divider"></div>
               </div>)}
@@ -84,11 +93,26 @@ class Dashboard extends React.Component {
               </Modal>
             </div>
           </div>
+
+          <div className="row">
+            <h5><b>Today's Mood</b></h5>
+            <div className="divider"></div>
+            {this.state.mood.map((mood) => 
+            <div>
+            <p style={{float: "left", margin: "25px"}}>High: <b>{mood.high}</b></p>
+            <p style={{float: "left", margin: "25px"}}>Low: <b>{mood.low}</b></p>
+            {mood.medication === true ? <p style={{float: "left", margin: "25px"}}><i className="material-icons">check</i> medication</p> : <p style={{float: "left", margin: "25px"}}>no medication</p>}
+            {mood.exercise === true ? <p style={{float: "left", margin: "25px"}}><i className="material-icons">check</i> exercise</p> : <p style={{float: "left", margin: "25px"}}>no exercise</p>} 
+            <br></br>
+            <div className="divider" style={{clear: "left"}}></div>
+            </div>)}
+          </div>      
+
           <div className="row">
             <div 
               className="col s12" 
               style={{
-                boxShadow: "2px 2px 5px 2.5px #ddd",
+                boxShadow: "10px 10px 20px 5px #eee",
                 padding: "25px",
                 marginTop: "25px"
               }}>

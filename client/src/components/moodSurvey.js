@@ -87,9 +87,9 @@ class MoodSurvey extends React.Component {
           <span>Exercise</span>
           </label>
         </div>
+        <div className="divider"></div>
         <button
           style={{
-            width: "150px",
             borderRadius: "3px",
             letterSpacing: "1.5px",
             marginTop: "2rem",
