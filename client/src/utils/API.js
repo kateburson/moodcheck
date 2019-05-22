@@ -18,5 +18,8 @@ export default {
   },
   newMood: function(moodSurvey, id) {
     return axios.post("/api/mood/" + id, moodSurvey)
+  },
+  findMoods: function(id) {
+    return axios.get("/api/mood/" + id)
   }
 };

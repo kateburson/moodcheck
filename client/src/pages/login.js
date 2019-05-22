@@ -89,7 +89,7 @@ class Login extends Component {
                       onChange={this.handleChange}
                       value={this.state.email}
                     />
-                    <label for="email">Email</label>
+                    <label htmlFor="email">Email</label>
                   </div>
                 </div>
                 <div className="row">

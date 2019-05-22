@@ -36,14 +36,7 @@ class MoodSurvey extends React.Component {
 
   render() {
     return(
-      <div 
-        style={{
-          boxShadow: "5px 5px 20px 5px #eee",
-          padding: "25px",
-          marginTop: "25px"
-        }}
-      >
-        <h5><b>Mood Survey</b></h5>
+      <div>
           <p>Mood (high)</p>
           <Range  
             min="1" 
