@@ -29,12 +29,13 @@ class Nav extends React.Component {
        { value => {
         return(
           <div>
-            <div className="row">
-              <h5 className="left-align black-text" style={{lineHeight: "1.5em", paddingLeft: "20px", paddingTop: "10px"}}>
-              <b>Hey there, {value.currentUser.name.split(" ")[0]}</b>
+            <div className="row grey darken-4">
+              <h5 className="left-align white-text" style={{lineHeight: "1.5em", padding: "20px", paddingTop: "10px"}}>
+              <b>{value.currentUser.name}</b>
               </h5>
+              <img src="../../daisy.png" alt="daisy" className="right" style={{height: "250px", paddingRight: "25px"}}/>
             </div>
-            <div className="divider"></div>
+            <div className="row">
             <Link to="/dashboard" id="dashboard" className="menu-item black-text">
               <i className="material-icons">dashboard</i>Dashboard 
             </Link>
@@ -65,6 +66,7 @@ class Nav extends React.Component {
             >
               Logout
             </button>
+            </div>
         </div>
         )
       }}

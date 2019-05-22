@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class NotFound extends React.Component {
   render() {
@@ -10,12 +11,10 @@ class NotFound extends React.Component {
           width: "100vw", 
           padding: "25px"
         }}>
-        <h2 
-          className="white-text" 
-          style={{
-            marginLeft: "25px"
-          }}>Page not found.
-        </h2>
+        <div>
+          <h2 className="white-text">Page not found</h2>
+          <Link to="/login"><i className="material-icons">keyboard_backspace</i>Back to Mood Check</Link>
+        </div>
         <img 
           src="../../daisy.png" alt="sad daisy" 
           className="right"

@@ -63,7 +63,6 @@ class JournalForm extends React.Component {
             width: "150px",
             borderRadius: "3px",
             letterSpacing: "1.5px",
-            marginTop: "2rem",
             background: "#FDFFC3",
             color: "black"
           }}

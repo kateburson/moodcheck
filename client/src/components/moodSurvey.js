@@ -37,6 +37,7 @@ class MoodSurvey extends React.Component {
   render() {
     return(
       <div>
+        <br></br>
           <p>Mood (high)</p>
           <Range  
             min="1" 
@@ -45,7 +46,7 @@ class MoodSurvey extends React.Component {
             value={this.state.high}
             onChange={this.handleChange}
           />
-
+          <br></br>
           <p>Mood (low)</p>
           <Range 
             min="1" 
@@ -87,9 +88,9 @@ class MoodSurvey extends React.Component {
           <span>Exercise</span>
           </label>
         </div>
-        <div className="divider"></div>
         <button
           style={{
+            width: "150px",
             borderRadius: "3px",
             letterSpacing: "1.5px",
             marginTop: "2rem",
