@@ -1,26 +1,15 @@
-
 import React from "react";
-import { Range } from "react-materialize";
+import { Modal, Range } from "react-materialize";
 import API from "../utils/API";
 import moment from "moment";
 
-class MoodSurvey extends React.Component {
-
+class EditMoodModal extends React.Component {
   state = {
     high: "",
     low: "",
     medication: false,
-    exercise: false,  
+    exercise: false 
   }
-
-  // componentDidUpdate = () => {
-  //   const id = localStorage.getItem("id");
-  //   API.findMoods(id)
-  //   .then(res => {
-  //     let result = res.data.mood.filter(mood => moment(mood.date).format("MMM DD YYYY") === moment().format("MMM DD YYYY"));
-  //     this.setState({mood: result});
-  //   })
-  // }
 
   handleChange = e => {
     this.setState({ [e.target.id]: e.target.value });
@@ -31,57 +20,49 @@ class MoodSurvey extends React.Component {
     this.setState({ [e.target.id]: value });
   }
 
-  submitMood = e => {
+  editMood = (e, id) => {
     e.preventDefault();
-    console.log(this.state)
-    const id = localStorage.getItem("id");
+    console.log("id", id);
     const moodSurvey = {
       high: this.state.high,
       low: this.state.low,
       medication: this.state.medication,
       exercise: this.state.exercise 
     }
-    console.log(moodSurvey);
-    API.newMood(moodSurvey, id)
+    console.log("mood survey", moodSurvey);
+    API.editMood(moodSurvey, id);
   }
-
-
 
   render() {
     return(
       <div>
+        <p>Mood (high)</p>
+        <Range  
+          min="1" 
+          max="10" 
+          id="high" 
+          value={this.state.high}
+          onChange={this.handleChange}
+        />
         <br></br>
-          <p>Mood (high)</p>
-          <Range  
-            min="1" 
-            max="10" 
-            id="high" 
-            value={this.state.high}
-            onChange={this.handleChange}
-          />
-          <br></br>
-          <p>Mood (low)</p>
-          <Range 
-            min="1" 
-            max="10" 
-            id="low" 
-            value={this.state.low}
-            onChange={this.handleChange}
-          />
-
+        <p>Mood (low)</p>
+        <Range 
+          min="1" 
+          max="10" 
+          id="low" 
+          value={this.state.low}
+          onChange={this.handleChange}/>
         <div
           className="switch s6"
           style={{
             margin: "15px"
-          }}
-        >
+          }}>
           <label>
           <input 
             type="checkbox"
             id="medication"
             value={this.state.medication}
-            onChange={this.handleCheckbox}
-          />
+            onChange={this.handleCheckbox}/>
           <span>Medication</span>
           </label>
         </div>
@@ -89,15 +70,13 @@ class MoodSurvey extends React.Component {
           className="switch s6" 
           style={{
             margin: "15px"
-          }}
-        >
+          }}>
           <label>
           <input 
             type="checkbox" 
             id="exercise"
             value={this.state.exercise}
-            onChange={this.handleCheckbox}
-          />
+            onChange={this.handleCheckbox}/>
           <span>Exercise</span>
           </label>
         </div>
@@ -112,14 +91,13 @@ class MoodSurvey extends React.Component {
           }}
           className="btn waves-effect waves-light"
           type="button"
-          onClick={this.submitMood}
-          disabled={!Boolean(this.state.high && this.state.low)}
-        >
+          onClick={(e) => this.editMood(e, this.props.id)}
+          disabled={!Boolean(this.state.high && this.state.low)}>
           Submit
-      </button>
+        </button>
       </div>
     )
   }
 }
 
-export default MoodSurvey;
+export default EditMoodModal

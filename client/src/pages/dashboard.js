@@ -1,19 +1,23 @@
 import React from "react";
 import API from "../utils/API";
 import moment from "moment";
+import { Modal } from "react-materialize";
 
 import Nav from "../components/sideNav";
 import JournalForm from "../components/journalForm";
 import MoodSurvey from "../components/moodSurvey";
 import MoodChart from "../components/moodChart";
-import { Modal } from "react-materialize";
+import EditMoodModal from "../components/editMoodModal";
+
 // import API from "../utils/API";
 
 class Dashboard extends React.Component {
 
   state = {
     journal: [],
-    mood: []
+    mood: [],
+    moodID: "",
+    journalID: ""
   }
 
   componentDidMount = () => {
@@ -21,9 +25,10 @@ class Dashboard extends React.Component {
 
     API.findMoods(id)
     .then(res => {
+      console.log(res.data.mood);
       let result = res.data.mood.filter(mood => moment(mood.date).format("MMM DD YYYY") === moment().format("MMM DD YYYY"));
-      console.log(result);
       this.setState({mood: result});
+      console.log("this.state.mood", this.state.mood)
     })
 
     API.populateJournal(id)
@@ -36,13 +41,26 @@ class Dashboard extends React.Component {
 
   // componentDidUpdate = () => {
   //   const id = localStorage.getItem("id");
+
+  //   API.findMoods(id)
+  //   .then(res => {
+  //     let result = res.data.mood.filter(mood => moment(mood.date).format("MMM DD YYYY") === moment().format("MMM DD YYYY"));
+  //     console.log("mood", result)
+  //     this.setState({mood: result})
+  //   });
+
   //   API.populateJournal(id)
   //   .then(res => {
   //     let result = res.data.journal.filter(entry => moment(entry.date).format("MMM DD YYYY") === moment().format("MMM DD YYYY"));
-  //     console.log(result);
+  //     console.log("journal", result);
   //     this.setState({journal: result});
   //   })
   // }
+
+  removeMood = (e, id) => {
+    e.preventDefault();
+    API.removeMood(id);
+  }
 
   render() {
     return(
@@ -78,22 +96,25 @@ class Dashboard extends React.Component {
             </div>
           </div>
 
-            <div 
-                className="col s12 l8" 
-                style={{
-                  padding: "25px",
-                  marginTop: "25px"
-            }}>
+            <div className="col s12 l8" style={{padding: "25px", marginTop: "25px"}}>
               <h5><b>Today's Mood</b></h5>
               <div className="divider"></div>
               {this.state.mood.map((mood) => 
-              <div>
-                <p style={{float: "left", margin: "25px"}}>High: <b>{mood.high}</b></p>
-                <p style={{float: "left", margin: "25px"}}>Low: <b>{mood.low}</b></p>
-                {mood.medication === true ? <p style={{float: "left", margin: "25px"}}><i className="material-icons">check</i> medication</p> : <p style={{float: "left", margin: "25px"}}>no medication</p>}
-                {mood.exercise === true ? <p style={{float: "left", margin: "25px"}}><i className="material-icons">check</i> exercise</p> : <p style={{float: "left", margin: "25px"}}>no exercise</p>} 
+              <div key={mood._id}>
+                <p style={{float: "left", margin: "25px 10px"}}>High: <b>{mood.high}</b></p>
+                <p style={{float: "left", margin: "25px 10px"}}>Low: <b>{mood.low}</b></p>
+                {mood.medication ? <p style={{float: "left", margin: "25px 10px"}}><i className="material-icons">check</i> medication</p> : <p style={{float: "left", margin: "25px 10px"}}>no medication</p>}
+                {mood.exercise ? <p style={{float: "left", margin: "25px 10px"}}><i className="material-icons">check</i> exercise</p> : <p style={{float: "left", margin: "25px 10px"}}>no exercise</p>}
+                <Modal 
+                  header="Edit Today's Mood" 
+                  trigger={<i className="material-icons" 
+                  style={{float: "right", margin: "25px 10px"}}
+                >edit</i>}>
+                  <EditMoodModal id={mood._id}></EditMoodModal>
+                </Modal> 
+                <i className="material-icons" style={{float: "right", margin: "25px 10px"}} onClick={(e) => this.removeMood(e, mood._id)}>delete</i>
                 <br></br>
-                <div className="divider" style={{clear: "left"}}></div>
+                <div className="divider" style={{clear: "right"}}></div>
               </div>)}
             </div>
 
@@ -112,6 +133,7 @@ class Dashboard extends React.Component {
               <div className="divider"></div>
               </div>)}
             </div>
+
           </div>   
 
           <div className="row">
@@ -126,7 +148,7 @@ class Dashboard extends React.Component {
               <MoodChart />
             </div> 
           </div>
-          
+
         </div>
       </div>
 

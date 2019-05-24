@@ -1,10 +1,25 @@
 import React from "react";
 import { SideNav } from "react-materialize";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { AccountConsumer } from '../context';
 
 class Nav extends React.Component {
+
+  state ={
+    redirectToLogin: false
+  }
+
+  logout = () => {
+    localStorage.clear();
+    this.setState({redirectToLogin: true});
+  }
+
   render() {
+    const { redirectToLogin } = this.state
+
+    if (redirectToLogin === true) {
+      return <Redirect to="/" />
+    }
     return(
       <nav style={{
         background: "#FDFFC3", 

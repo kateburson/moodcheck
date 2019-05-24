@@ -1,11 +1,16 @@
 * {
   margin: 0;
-  padding: 0
+  padding: 0;
 }
 
 i {
   float:left;
   margin-right: 10px;
+}
+
+i:hover {
+  color: darkgray;
+  cursor: auto;
 }
 
 /* Position and sizing of burger button */

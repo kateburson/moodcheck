@@ -20,7 +20,7 @@ module.exports = {
     })
     .catch(err => res.status(422).json(err));
   },
-  updateMood: function(req, res) {
+  editMood: function(req, res) {
     db.Mood
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))

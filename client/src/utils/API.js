@@ -21,5 +21,11 @@ export default {
   },
   findMoods: function(id) {
     return axios.get("/api/mood/" + id)
+  },
+  editMood: function(moodSurvey, id) {
+    return axios.put("/api/mood/" + id, moodSurvey)
+  },
+  removeMood: function(id) {
+    return axios.delete("/api/mood/" + id)
   }
 };
