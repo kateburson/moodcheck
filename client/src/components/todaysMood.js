@@ -23,16 +23,21 @@ class TodaysMood extends React.Component {
     })
   }
 
-  componentDidUpdate = () => {
-    const id = localStorage.getItem("id");
-    
-    API.findMoods(id)
-    .then(res => {
-      let result = res.data.mood.filter(mood => moment(mood.date).format("MMM DD YYYY") === moment().format("MMM DD YYYY"));
-      console.log("mood", result)
-      this.setState({mood: result})
-    })
+  removeMood = (e, id) => {
+    e.preventDefault();
+    API.removeMood(id);
   }
+
+  // componentDidUpdate = () => {
+  //   const id = localStorage.getItem("id");
+
+  //   API.findMoods(id)
+  //   .then(res => {
+  //     let result = res.data.mood.filter(mood => moment(mood.date).format("MMM DD YYYY") === moment().format("MMM DD YYYY"));
+  //     console.log("mood", result)
+  //     this.setState({mood: result})
+  //   })
+  // }
 
   render() {
     return(
@@ -48,7 +53,7 @@ class TodaysMood extends React.Component {
             trigger={<i className="material-icons" 
             style={{float: "right", margin: "25px 10px"}}
           >edit</i>}>
-            <EditMoodModal id={mood._id}></EditMoodModal>
+            <EditMoodModal id={mood._id} data={mood}></EditMoodModal>
           </Modal> 
           <i className="material-icons" style={{float: "right", margin: "25px 10px"}} onClick={(e) => this.removeMood(e, mood._id)}>delete</i>
           <br></br>

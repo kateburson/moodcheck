@@ -4,10 +4,15 @@ import API from "../utils/API";
 
 class EditMoodModal extends React.Component {
   state = {
-    high: "",
-    low: "",
-    medication: false,
-    exercise: false 
+    high: this.props.data.high,
+    low: this.props.data.low,
+    medication: this.props.data.medication,
+    exercise: this.props.data.exercise 
+  }
+
+  componentDidMount = e => {
+    this.state.medication ?  this.refs.medication.checked = true : this.refs.medication.checked = false;
+    this.state.exercise?  this.refs.medication.exercise = true : this.refs.exercise.checked = false;
   }
 
   handleChange = e => {
@@ -60,6 +65,7 @@ class EditMoodModal extends React.Component {
           <input 
             type="checkbox"
             id="medication"
+            ref="medication"
             value={this.state.medication}
             onChange={this.handleCheckbox}/>
           <span>Medication</span>
@@ -74,6 +80,7 @@ class EditMoodModal extends React.Component {
           <input 
             type="checkbox" 
             id="exercise"
+            ref="exercise"
             value={this.state.exercise}
             onChange={this.handleCheckbox}/>
           <span>Exercise</span>

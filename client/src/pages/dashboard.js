@@ -38,29 +38,6 @@ class Dashboard extends React.Component {
     })
   }
 
-  // componentDidUpdate = () => {
-  //   const id = localStorage.getItem("id");
-
-  //   API.findMoods(id)
-  //   .then(res => {
-  //     let result = res.data.mood.filter(mood => moment(mood.date).format("MMM DD YYYY") === moment().format("MMM DD YYYY"));
-  //     console.log("mood", result)
-  //     this.setState({mood: result})
-  //   });
-
-  //   API.populateJournal(id)
-  //   .then(res => {
-  //     let result = res.data.journal.filter(entry => moment(entry.date).format("MMM DD YYYY") === moment().format("MMM DD YYYY"));
-  //     console.log("journal", result);
-  //     this.setState({journal: result});
-  //   })
-  // }
-
-  removeMood = (e, id) => {
-    e.preventDefault();
-    API.removeMood(id);
-  }
-
   render() {
     return(
       <div>
@@ -113,6 +90,7 @@ class Dashboard extends React.Component {
               <div>
               <p style={{marginTop: "25px"}}><b>{entry.title}</b></p>
               <p style={{marginBottom: "25px"}}>{entry.body}</p>
+              <i className="material-icons" >delete</i>
               <div className="divider"></div>
               </div>)}
             </div>
