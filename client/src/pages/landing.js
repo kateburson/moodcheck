@@ -55,9 +55,10 @@ class Landing extends React.Component {
               margin: "1rem",
               width: "150px",
               borderRadius: "3px",
-              letterSpacing: "1.5px"
+              letterSpacing: "1.5px",
+              background: "#FDFFC3"
             }}
-            className="btn btn-large waves-effect white hoverable black-text"
+            className="btn btn-large waves-effect hoverable black-text"
           >
             Log In
           </Link>
