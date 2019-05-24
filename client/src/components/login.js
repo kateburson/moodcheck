@@ -41,7 +41,7 @@ class Login extends Component {
         {value => {
           return (
             <div className="row">
-              <div className="col s12 l6">
+              <div className="col s12 l6" style={{marginBottom: "50px"}}>
                 <h1>Login</h1>
                 <img style={{width: "150px", margin: "25px 0 10px 0"}} src="../../logo.png" alt="MoodCheckLogo" />
                 <p>Don't have an account?

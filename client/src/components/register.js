@@ -33,7 +33,7 @@ class Register extends React.Component {
   render() {
     return(
       <div className="row">
-        <div className="col s12 l6">
+        <div className="col s12 l6" style={{marginBottom: "50px"}}>
           <h1>Register</h1>
           <img style={{width: "150px", margin: "25px 0 10px 0"}} src="../../logo.png" alt="MoodCheckLogo" />
           <p>Already have an account?

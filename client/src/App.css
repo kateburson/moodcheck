@@ -3,13 +3,21 @@
   padding: 0;
 }
 
+input::placeholder {
+  color: black;
+}
+
+a {
+  color: teal;
+}
+
 i {
   float:left;
   margin-right: 10px;
 }
 
 i:hover {
-  color: darkgray;
+  color: grey;
   cursor: auto;
 }
 

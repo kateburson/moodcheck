@@ -1,10 +1,15 @@
 import React from "react";
 import API from "../utils/API";
+import M from "react-materialize";
 
 class EditMoodModal extends React.Component {
   state = {
     title: this.props.data.title,
     body: this.props.data.body,
+  }
+
+  componendDidMount() {
+    M.updateTextFields()
   }
 
   handleChange = e => {

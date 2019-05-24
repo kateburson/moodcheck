@@ -6,7 +6,7 @@ class Landing extends React.Component {
       <div className="row">
         <div className="col s12 center-align" style={{padding: "25px"}}>
           <h3>
-            Welcome to <b>MoodCheck</b>
+            Welcome to<img style={{width: "220px", marginLeft: "12.5px"}} src="../../logo.png" alt="MoodCheckLogo" />
           </h3 >
           <p className="flow-text grey-text text-darken-4">
           With MoodCheck you can easily enter mood data, keep a mood journal to identify trends and triggers, and set checkpoints to promote mindfulness. Start tracking your mood today! 
@@ -30,10 +30,9 @@ class Landing extends React.Component {
               margin: "1rem",
               width: "150px",
               borderRadius: "3px",
-              letterSpacing: "1.5px",
-              background: "#FDFFC3"
+              letterSpacing: "1.5px"
             }}
-            className="btn btn-large waves-effect hoverable black-text"
+            className="btn btn-large waves-effect waves-light hoverable black-text white"
             onClick={() => this.props.view(false, true, false, false)}
           >
             Log In

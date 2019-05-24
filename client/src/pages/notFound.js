@@ -13,7 +13,7 @@ class NotFound extends React.Component {
         }}>
         <div>
           <h2 className="white-text">Page not found</h2>
-          <Link to="/login"><i className="material-icons">keyboard_backspace</i>Back to Mood Check</Link>
+          <Link to="/"><i className="material-icons">keyboard_backspace</i>Back to Mood Check</Link>
         </div>
         <img 
           src="../../daisy.png" alt="sad daisy" 

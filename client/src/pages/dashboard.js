@@ -40,7 +40,7 @@ class Dashboard extends React.Component {
 
   render() {
     return(
-      <div>
+      <div style={{backgroundImage: "url(../../calflowersYellow.png)"}}>
         <Nav />
         <div className="container">
 
@@ -51,7 +51,7 @@ class Dashboard extends React.Component {
           <div className="row">
             <div className="col s12 l4">
               <div style={{
-                boxShadow: "10px 10px 20px 5px #eee",
+                boxShadow: "10px 10px 20px 5px rgba(0, 0, 0, .1)",
                 padding: "25px",
                 marginTop: "25px",
               }}>
@@ -62,7 +62,7 @@ class Dashboard extends React.Component {
 
             <div
               style={{
-                boxShadow: "10px 10px 20px 5px #eee",
+                boxShadow: "10px 10px 20px 5px rgba(0, 0, 0, .1)",
                 padding: "25px",
                 marginTop: "25px",
               }}>
