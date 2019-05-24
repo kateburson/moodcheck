@@ -1,5 +1,4 @@
 import React from "react";
-import { Redirect, Link } from "react-router-dom";
 import API from "../utils/API";
 
 class Register extends React.Component {
@@ -8,8 +7,7 @@ class Register extends React.Component {
     name: "",
     email: "",
     password: "",
-    password2: "",
-    redirectToLogin: false
+    password2: ""
   };
 
   handleChange = e => {
@@ -25,7 +23,7 @@ class Register extends React.Component {
         password: this.state.password
       }
       API.register(userData)
-      .then(this.setState({redirectToLogin: true}));
+      .then(this.props.view(false, false, false, true));
     } else {
       alert("Passwords do not match");
     }
@@ -33,33 +31,15 @@ class Register extends React.Component {
 
 
   render() {
-    const { redirectToLogin } = this.state
-
-    if (redirectToLogin === true) {
-      return <Redirect to="/login" />
-    }
-
     return(
-      <div 
-        background="../../background.png"
-        style={{
-          backgroundImage: "url('../../background.png')",
-          backgroundRepeat: "tile"
-        }}
-      >
-      <div className="valign-wrapper" style={{ 
-        height: "100vh", 
-        // background: "#FDFFC3",
-        width: "100vw"
-      }} >
-      <div className="container">
-        <div className="row">
-          <div className="col s12 l6">
-            <h1>Register</h1>
-            <p>Already have an account?
-              <Link to="/login"> Login</Link>
-            </p>  
-          </div>
+      <div className="row">
+        <div className="col s12 l6">
+          <h1>Register</h1>
+          <img style={{width: "150px", margin: "25px 0 10px 0"}} src="../../logo.png" alt="MoodCheckLogo" />
+          <p>Already have an account?
+            <a onClick={() => this.props.view(false, true, false, false)}><b> Login</b></a>
+          </p>  
+        </div>
         <form className="col s12 l6">
           <div className="row">
             <div className="input-field col s12">
@@ -70,7 +50,7 @@ class Register extends React.Component {
                 onChange={this.handleChange}
                 value={this.state.name}
               />
-              <label for="name">Name</label>
+              <label htmlFor="name">Name</label>
             </div>
           </div>
           <div className="row">
@@ -82,7 +62,7 @@ class Register extends React.Component {
                 onChange={this.handleChange}
                 value={this.state.email}
               />
-              <label for="email">Email</label>
+              <label htmlFor="email">Email</label>
             </div>
           </div>
           <div className="row">
@@ -94,7 +74,7 @@ class Register extends React.Component {
                 onChange={this.handleChange}
                 value={this.state.password}
               />
-              <label for="password">Password</label>
+              <label htmlFor="password">Password</label>
             </div>
           </div>
           <div className="row">
@@ -106,7 +86,7 @@ class Register extends React.Component {
                 onChange={this.handleChange}
                 value={this.state.password2}
               />
-              <label for="password2">Confirm Password</label>
+              <label htmlFor="password2">Confirm Password</label>
             </div>
           </div>
           <button 
@@ -117,9 +97,6 @@ class Register extends React.Component {
           </button>
         </form>
       </div>
-     </div> 
-    </div>
-    </div>
     )
   }
 }

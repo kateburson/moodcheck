@@ -2,7 +2,6 @@
 import React from "react";
 import { Range } from "react-materialize";
 import API from "../utils/API";
-import moment from "moment";
 
 class MoodSurvey extends React.Component {
 

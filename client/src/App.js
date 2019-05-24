@@ -2,9 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import './App.css';
-import Landing from "./pages/landing";
-import Register from "./pages/register";
-import Login from "./pages/login";
+// import Landing from "./pages/landing";
+// import Register from "./pages/register";
+// import Login from "./pages/login";
+import Splash from "./pages/splash";
 import Dashboard from "./pages/dashboard";
 // import Checkpoints from "./components/pages/Checkpoints";
 import Journal from "./pages/journal";
@@ -23,9 +24,9 @@ class App extends React.Component {
           <AccountProvider >
             <div className="App">
               <Switch>
-                <Route exact path="/" component={Landing} />
-                <Route exact path="/register" component={Register} />
-                <Route exact path="/login" component={Login} />
+                <Route exact path="/" component={Splash} />
+                {/* <Route exact path="/register" component={Register} />
+                <Route exact path="/login" component={Login} /> */}
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/journal" component={Journal} />
                 <Route component={NotFound} />
