@@ -6,7 +6,7 @@ const journalController = require("../../controllers/journalController");
 router.route("/:id")
   .get(journalController.populateJournal)
   .post(journalController.newEntry)
-  .put(journalController.update)
-  .delete(journalController.remove)
+  .put(journalController.updateJournal)
+  .delete(journalController.removeJournal)
 
 module.exports = router

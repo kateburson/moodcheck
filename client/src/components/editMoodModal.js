@@ -97,8 +97,7 @@ class EditMoodModal extends React.Component {
           }}
           className="btn waves-effect waves-light"
           type="button"
-          onClick={(e) => this.editMood(e, this.props.id)}
-          disabled={!Boolean(this.state.high && this.state.low)}>
+          onClick={(e) => this.editMood(e, this.props.id)}>
           Submit
         </button>
       </div>
