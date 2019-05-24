@@ -1,7 +1,6 @@
 import React from "react";
-import { Modal, Range } from "react-materialize";
+import { Range } from "react-materialize";
 import API from "../utils/API";
-import moment from "moment";
 
 class EditMoodModal extends React.Component {
   state = {

@@ -1,13 +1,12 @@
 import React from "react";
 import API from "../utils/API";
 import moment from "moment";
-import { Modal } from "react-materialize";
 
 import Nav from "../components/sideNav";
 import JournalForm from "../components/journalForm";
 import MoodSurvey from "../components/moodSurvey";
 import MoodChart from "../components/moodChart";
-import EditMoodModal from "../components/editMoodModal";
+import TodaysMood from "../components/todaysMood";
 
 // import API from "../utils/API";
 
@@ -99,23 +98,7 @@ class Dashboard extends React.Component {
             <div className="col s12 l8" style={{padding: "25px", marginTop: "25px"}}>
               <h5><b>Today's Mood</b></h5>
               <div className="divider"></div>
-              {this.state.mood.map((mood) => 
-              <div key={mood._id}>
-                <p style={{float: "left", margin: "25px 10px"}}>High: <b>{mood.high}</b></p>
-                <p style={{float: "left", margin: "25px 10px"}}>Low: <b>{mood.low}</b></p>
-                {mood.medication ? <p style={{float: "left", margin: "25px 10px"}}><i className="material-icons">check</i> medication</p> : <p style={{float: "left", margin: "25px 10px"}}>no medication</p>}
-                {mood.exercise ? <p style={{float: "left", margin: "25px 10px"}}><i className="material-icons">check</i> exercise</p> : <p style={{float: "left", margin: "25px 10px"}}>no exercise</p>}
-                <Modal 
-                  header="Edit Today's Mood" 
-                  trigger={<i className="material-icons" 
-                  style={{float: "right", margin: "25px 10px"}}
-                >edit</i>}>
-                  <EditMoodModal id={mood._id}></EditMoodModal>
-                </Modal> 
-                <i className="material-icons" style={{float: "right", margin: "25px 10px"}} onClick={(e) => this.removeMood(e, mood._id)}>delete</i>
-                <br></br>
-                <div className="divider" style={{clear: "right"}}></div>
-              </div>)}
+              <TodaysMood />
             </div>
 
             <div 
