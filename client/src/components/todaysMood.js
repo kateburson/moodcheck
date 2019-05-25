@@ -28,17 +28,6 @@ class TodaysMood extends React.Component {
     API.removeMood(id);
   }
 
-  // componentDidUpdate = () => {
-  //   const id = localStorage.getItem("id");
-
-  //   API.findMoods(id)
-  //   .then(res => {
-  //     let result = res.data.mood.filter(mood => moment(mood.date).format("MMM DD YYYY") === moment().format("MMM DD YYYY"));
-  //     console.log("mood", result)
-  //     this.setState({mood: result})
-  //   })
-  // }
-
   render() {
     return(
       <div>

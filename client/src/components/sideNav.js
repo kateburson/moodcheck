@@ -80,8 +80,8 @@ class Nav extends React.Component {
               >
                 Logout
               </button>
-              <div className="valign-bottom right">
-                <img src="../../daisy.png" alt="daisy" style={{height: "250px", paddingRight: "25px", marginBottom: "0px"}} />
+              <div className="right" style={{marginBottom: "0px"}}>
+                <img src="../../daisy.png" alt="daisy" style={{height: "250px", paddingRight: "25px"}} />
               </div>
             </div>   
         </div>
