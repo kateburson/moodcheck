@@ -17,11 +17,6 @@ class Journal extends React.Component {
     .then(res => this.setState({journal: res.data.journal}))
   }
 
-  componentDidUpdate = () => {
-    const id = localStorage.getItem("id");
-    API.populateJournal(id)
-    .then(res => this.setState({journal: res.data.journal}))
-  }
   
   render() {
     return(

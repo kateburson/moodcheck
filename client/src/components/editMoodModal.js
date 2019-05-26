@@ -8,12 +8,12 @@ class EditMoodModal extends React.Component {
     high: this.props.data.high,
     low: this.props.data.low,
     medication: this.props.data.medication,
-    exercise: this.props.data.exercise 
+    exercise: this.props.data.exercise,
   }
 
   componentDidMount = () => {
-    this.state.medication ?  this.refs.medication.checked = true : this.refs.medication.checked = false;
-    this.state.exercise ?  this.refs.exercise.checked = true : this.refs.exercise.checked = false;
+    this.state.medication ? this.refs.medication.checked = true : this.refs.medication.checked = false;
+    this.state.exercise ? this.refs.exercise.checked = true : this.refs.exercise.checked = false;
   }
 
   handleChange = e => {
@@ -28,14 +28,14 @@ class EditMoodModal extends React.Component {
   editMood = (e, id) => {
     e.preventDefault();
     console.log("id", id);
-    const moodSurvey = [{
+    const moodSurvey = {
       high: this.state.high,
       low: this.state.low,
       medication: this.state.medication,
       exercise: this.state.exercise 
-    }]
-    this.props.updateMood(moodSurvey);
-    API.editMood(moodSurvey, id);
+    };
+    API.editMood(moodSurvey, id)
+    .then(() => this.props.updateMood([moodSurvey]))
   }
 
   render() {
@@ -98,7 +98,7 @@ class EditMoodModal extends React.Component {
           }}
           className="btn waves-effect waves-light"
           type="button"
-          onClick={(e) => this.editMood(e, this.props.id)}>
+          onClick={(e) => this.editMood(e, this.state.id)}>
           Submit
         </button>
       </div>

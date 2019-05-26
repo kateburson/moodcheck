@@ -7,32 +7,18 @@ import EditJournalModal from "../components/editJournalModal";
 
 
 class TodaysMood extends React.Component {
-  state = {
-    journal: []
-  }
-
-  componentDidMount = () => {
-    const id = localStorage.getItem("id");
-
-    API.populateJournal(id)
-    .then(res => {
-      let result = res.data.journal.filter(entry => moment(entry.date).format("MMM DD YYYY") === moment().format("MMM DD YYYY"));
-      console.log(result);
-      this.setState({journal: result});
-    })
-  }
-
-
+ 
   removeJournal = (e, id) => {
     e.preventDefault();
     console.log("id", id);
-    API.removeJournal(id);
+    API.removeJournal(id)
+    .then(() => this.props.updateJournal([]))
   }
 
   render() {
     return(
       <div>
-        {this.state.journal.map((entry) => 
+        {this.props.data.map((entry) => 
           <div>
           <p style={{marginTop: "25px"}}><b>{entry.title}</b></p>
           <p style={{marginBottom: "25px"}}>{entry.body}</p>
@@ -41,7 +27,7 @@ class TodaysMood extends React.Component {
             trigger={<i className="material-icons" 
             style={{float: "right", margin: "25px 10px"}}
           >edit</i>}>
-            <EditJournalModal id={entry._id} data={entry} />
+            <EditJournalModal updateJournal={this.props.updateJournal} id={entry._id} data={entry} />
           </Modal> 
           <i 
             className="material-icons right" 

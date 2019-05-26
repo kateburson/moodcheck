@@ -24,7 +24,8 @@ class EditMoodModal extends React.Component {
       body: this.state.body,
     }
     console.log("mood survey", updatedEntry);
-    API.editJournal(updatedEntry, id);
+    API.editJournal(updatedEntry, id)
+    .then(() => this.props.updateJournal([updatedEntry]))
   }
 
   render() {
