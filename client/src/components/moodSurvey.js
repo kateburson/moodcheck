@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Range } from "react-materialize";
 import API from "../utils/API";
@@ -11,15 +10,6 @@ class MoodSurvey extends React.Component {
     medication: false,
     exercise: false,  
   }
-
-  // componentDidUpdate = () => {
-  //   const id = localStorage.getItem("id");
-  //   API.findMoods(id)
-  //   .then(res => {
-  //     let result = res.data.mood.filter(mood => moment(mood.date).format("MMM DD YYYY") === moment().format("MMM DD YYYY"));
-  //     this.setState({mood: result});
-  //   })
-  // }
 
   handleChange = e => {
     this.setState({ [e.target.id]: e.target.value });
@@ -121,4 +111,4 @@ class MoodSurvey extends React.Component {
   }
 }
 
-export default MoodSurvey;
+export default MoodSurvey

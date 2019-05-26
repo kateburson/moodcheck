@@ -3,6 +3,7 @@ import { Range } from "react-materialize";
 import API from "../utils/API";
 
 class EditMoodModal extends React.Component {
+
   state = {
     high: this.props.data.high,
     low: this.props.data.low,
@@ -10,9 +11,9 @@ class EditMoodModal extends React.Component {
     exercise: this.props.data.exercise 
   }
 
-  componentDidMount = e => {
+  componentDidMount = () => {
     this.state.medication ?  this.refs.medication.checked = true : this.refs.medication.checked = false;
-    this.state.exercise?  this.refs.medication.exercise = true : this.refs.exercise.checked = false;
+    this.state.exercise ?  this.refs.exercise.checked = true : this.refs.exercise.checked = false;
   }
 
   handleChange = e => {
@@ -27,13 +28,13 @@ class EditMoodModal extends React.Component {
   editMood = (e, id) => {
     e.preventDefault();
     console.log("id", id);
-    const moodSurvey = {
+    const moodSurvey = [{
       high: this.state.high,
       low: this.state.low,
       medication: this.state.medication,
       exercise: this.state.exercise 
-    }
-    console.log("mood survey", moodSurvey);
+    }]
+    this.props.updateMood(moodSurvey);
     API.editMood(moodSurvey, id);
   }
 

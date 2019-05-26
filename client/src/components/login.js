@@ -23,10 +23,10 @@ class Login extends Component {
       localStorage.setItem("current_user_token", res.data.token);
       console.log("Database Response:", res);
       const currentUser = {
-          name: res.data.name,
-          email: res.data.email,
-          id: res.data.id
-        }
+        name: res.data.name,
+        email: res.data.email,
+        id: res.data.id
+      }
       localStorage.setItem("name", currentUser.name);
       localStorage.setItem("email", currentUser.email);
       localStorage.setItem("id", currentUser.id);

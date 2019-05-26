@@ -7,8 +7,18 @@ import EditMoodModal from "../components/editMoodModal";
 
 
 class TodaysMood extends React.Component {
-  state = {
-    mood: []
+  constructor(props) {
+    super(props)
+    this.state = {
+      mood: []
+    }
+    this.updateMood = this.updateMood.bind(this)
+  }
+
+  updateMood(mood) {
+    this.setState({
+      mood: mood
+    })
   }
 
   componentDidMount = () => {
@@ -42,7 +52,7 @@ class TodaysMood extends React.Component {
             trigger={<i className="material-icons" 
             style={{float: "right", margin: "25px 10px"}}
           >edit</i>}>
-            <EditMoodModal id={mood._id} data={mood}></EditMoodModal>
+            <EditMoodModal id={mood._id} data={mood} updateMood={this.updateMood}></EditMoodModal>
           </Modal> 
           <i className="material-icons" style={{float: "right", margin: "25px 10px"}} onClick={(e) => this.removeMood(e, mood._id)}>delete</i>
           <br></br>
