@@ -11,7 +11,7 @@ class Charts extends React.Component {
     moods: [],
     highs: [],
     lows: [],
-    labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    labels: [], 
     chartData: {}
   }
 
@@ -21,7 +21,8 @@ class Charts extends React.Component {
     .then(res => {
       res.data.mood.map(mood => this.state.highs.push(Number(mood.high)));
       res.data.mood.map(mood => this.state.lows.push(Number(mood.low)));
-      console.log(moment(res.data.mood[0].date).day())
+      const weekdays =  ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      res.data.mood.map(mood => this.state.labels.push(weekdays[moment(mood.date).day()]))
     }).then(() => {
       const data = {
       labels : this.state.labels,
