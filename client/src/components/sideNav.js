@@ -22,7 +22,7 @@ class Nav extends React.Component {
     }
     return(
       <nav style={{
-        background: "#FDFFC3", 
+        background: "#FDFFC3"
       }}>
         <div className="container" > 
           <Link

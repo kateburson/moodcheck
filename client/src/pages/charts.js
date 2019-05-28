@@ -1,60 +1,66 @@
 import React from "react";
-import API from "../utils/API";
 import { Line } from 'react-chartjs-2';
+import moment from "moment";
 
+import API from "../utils/API";
+import Nav from "../components/sideNav";
 
-class MoodChart extends React.Component {
+class Charts extends React.Component {
 
   state = {
     moods: [],
-    chartData: []
+    highs: [],
+    lows: [],
+    labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    chartData: {}
   }
 
   componentWillMount = () => {
     const id = localStorage.getItem("id");
     API.findMoods(id)
-    .then(res => this.setState({moods: res.data}))
-    .then(console.log(this.state.moods));
-  }
-
-
-  componentDidMount = () => {
-    
-    const data = {
-      labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    .then(res => {
+      res.data.mood.map(mood => this.state.highs.push(Number(mood.high)));
+      res.data.mood.map(mood => this.state.lows.push(Number(mood.low)));
+      console.log(moment(res.data.mood[0].date).day())
+    }).then(() => {
+      const data = {
+      labels : this.state.labels,
       datasets: [
         {
-          label: "Highs",
+          label: "High",
           fillColor: "rgba(220,220,220,0.2)",
           strokeColor: "rgba(220,220,220,1)",
           pointColor: "rgba(220,220,220,1)",
           pointStrokeColor: "#fff",
           pointHighlightFill: "#fff",
           pointHighlightStroke: "rgba(220,220,220,1)",
-          data: [65, 59, 80, 81, 56, 55, 40]
+          data: this.state.highs
         },
         {
-          label: "Lows",
+          label: "Low",
           fillColor: "rgba(151,187,205,0.2)",
           strokeColor: "rgba(151,187,205,1)",
           pointColor: "rgba(151,187,205,1)",
           pointStrokeColor: "#fff",
           pointHighlightFill: "#fff",
           pointHighlightStroke: "rgba(151,187,205,1)",
-          data: [28, 48, 40, 19, 86, 27, 90]
+          data: this.state.lows
         }
       ]
-    };
+    }
     this.setState({chartData: data})
-  
+    console.log(this.state.chartData)
+    });
   }
-
   
   render() {
     return(
-      <Line data={this.state.chartData} width="600" height="250"/>
+      <div>
+        <Nav />
+        <Line data={this.state.chartData} />
+      </div>
     )
   }
 }
 
-export default MoodChart
+export default Charts

@@ -10,7 +10,7 @@ import Dashboard from "./pages/dashboard";
 // import Checkpoints from "./components/pages/Checkpoints";
 import Journal from "./pages/journal";
 // import History from "./components/pages/History";
-// import Charts from "./components/pages/Charts";
+import Charts from "./pages/charts";
 import NotFound from "./pages/notFound";
 
 import AccountProvider from './context';
@@ -29,6 +29,7 @@ class App extends React.Component {
                 <Route exact path="/login" component={Login} /> */}
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/journal" component={Journal} />
+                <Route exact path="/charts" component={Charts} />
                 <Route component={NotFound} />
               </Switch>
             </div>
