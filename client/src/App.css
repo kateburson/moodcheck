@@ -3,10 +3,6 @@
   padding: 0px;
 }
 
-input::placeholder {
-  color: black;
-}
-
 a {
   color: teal;
 }

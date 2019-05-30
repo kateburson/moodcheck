@@ -79,11 +79,8 @@ class Nav extends React.Component {
                 className="btn waves-effect waves-light hoverable"
               >
                 Logout
-              </button>
-              <div className="right" style={{marginBottom: "0px"}}>
-                <img src="../../daisy.png" alt="daisy" style={{height: "250px", paddingRight: "25px"}} />
-              </div>
-            </div>   
+              </button>  
+            </div> 
         </div>
         )
       }}

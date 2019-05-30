@@ -1,7 +1,6 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
-import moment, { weekdaysMin } from "moment";
-import { RadioGroup } from "react-materialize";
+import moment from "moment";
 
 import API from "../utils/API";
 import Nav from "../components/sideNav";
@@ -12,19 +11,22 @@ class Charts extends React.Component {
     chartData: {},
     radio: "0",
     range: [{
+      // last week
       highs: [],
       lows: [],
       labels: []
     },
     {
+      // last month
       highs: [],
       lows: [],
       labels: []
     },
     {
+      // last year
       highs: [],
       lows: [],
-      labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+      labels: []
     }]
   }
 
@@ -36,17 +38,23 @@ class Charts extends React.Component {
     const lastMonth = moment().startOf('day').subtract(1,'month');
     const lastYear = moment().startOf('day').subtract(1,'year');
     var yesterdayEndOfRange =  moment().endOf('day').subtract(1,'day');
+
     const week = res.data.mood.filter(mood => moment(mood.date).isBetween(lastWeek, yesterdayEndOfRange))
     week.map(day => this.state.range[0].highs.push(day.high));
     week.map(day => this.state.range[0].lows.push(day.low));
     const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     week.map(day => this.state.range[0].labels.push(weekdays[moment(day.date).day()]));
+
     const month = res.data.mood.filter(mood => moment(mood.date).isBetween(lastMonth, yesterdayEndOfRange));
     month.map(day => this.state.range[1].highs.push(day.high));
     month.map(day => this.state.range[1].lows.push(day.low));
+    month.map(day => this.state.range[1].labels.push(moment(day.date).format("DD")))
+
     const year = res.data.mood.filter(mood => moment(mood.date).isBetween(lastYear, yesterdayEndOfRange));
     year.map(day => this.state.range[2].highs.push(day.high));
     year.map(day => this.state.range[2].lows.push(day.low));
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    year.map(day => this.state.range[2].labels.push(months[moment(day.date).month()]));
     }).then(() => {this.buildChart()})
   }
 
@@ -88,18 +96,26 @@ class Charts extends React.Component {
   
   render() {
     return(
-      <div>
+      <div style={{backgroundImage: 'url("../../moddaisy.png")'}}>
         <Nav />
-        <div>
-          <RadioGroup
-            name="dateRange"
-            label="Date Range"
-            value={this.state.radio}
-            options={[{label: "week", value: "0"}, {label: "month", value: "1"}, {label: "year", value: "2"}]}
-            onChange={this.handleChange}
-          />
+        <div className="container">
+          <h3 className="left">Mood Chart</h3>
+          <div className="right" style={{margin: "25px 0", padding: "15px"}}>
+            <label style={{marginRight: "15px"}}>
+              <input type="radio" name="radios" value="0" onChange={this.handleChange} checked/>
+              <span>week</span>
+            </label>
+            <label style={{marginRight: "15px"}}>
+              <input type="radio" name="radios" value="1" onChange={this.handleChange}/>
+              <span>month</span>
+            </label>
+            <label>
+              <input type="radio" name="radios" value="2" onChange={this.handleChange}/>
+              <span>year</span>
+            </label>
+          </div>
+          <Line data={this.state.chartData} />
         </div>
-        <Line data={this.state.chartData} />
       </div>
     )
   }

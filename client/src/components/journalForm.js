@@ -21,7 +21,10 @@ class JournalForm extends React.Component {
     const id = localStorage.getItem("id");
     API.newEntry(entry, id)
     .then(() => this.props.updateJournal([entry]))
-    .then(this.setState({title: "", body: ""}))
+    .then(() => {
+      this.setState({title: "", body: ""});
+      this.props.view(this.props.state.viewMoodSurvey, false)
+    })
   }
 
   render() {

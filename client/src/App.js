@@ -2,14 +2,11 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import './App.css';
-// import Landing from "./pages/landing";
-// import Register from "./pages/register";
-// import Login from "./pages/login";
 import Splash from "./pages/splash";
 import Dashboard from "./pages/dashboard";
-// import Checkpoints from "./components/pages/Checkpoints";
+// import Checkpoints from "./pages/Checkpoints";
 import Journal from "./pages/journal";
-// import History from "./components/pages/History";
+import History from "./pages/history";
 import Charts from "./pages/charts";
 import NotFound from "./pages/notFound";
 
@@ -25,11 +22,10 @@ class App extends React.Component {
             <div className="App">
               <Switch>
                 <Route exact path="/" component={Splash} />
-                {/* <Route exact path="/register" component={Register} />
-                <Route exact path="/login" component={Login} /> */}
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/journal" component={Journal} />
                 <Route exact path="/charts" component={Charts} />
+                <Route exact path="/history" component={History} />
                 <Route component={NotFound} />
               </Switch>
             </div>

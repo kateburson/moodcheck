@@ -19,6 +19,9 @@ export default {
   removeJournal: function(id) {
     return axios.delete("/api/journal/" + id)
   },
+  journalByDate: function(date) {
+    return axios.get("/api/journal/" + date)
+  },
   editJournal: function(updatedJournal, id) {
     return axios.put("/api/journal" + id, updatedJournal)
   },
