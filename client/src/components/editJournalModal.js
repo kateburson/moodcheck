@@ -6,6 +6,7 @@ class EditMoodModal extends React.Component {
   state = {
     title: this.props.data.title,
     body: this.props.data.body,
+    id: localStorage.getItem("id")
   }
 
   componendDidMount() {
@@ -73,7 +74,7 @@ class EditMoodModal extends React.Component {
           }}
           className="btn waves-effect waves-light"
           type="button"
-          onClick={(e) => this.editJournal(e, this.props.id)}
+          onClick={(e) => this.editJournal(e, this.state.id)}
           disabled={!Boolean(this.state.title && this.state.body)}>
           Submit
         </button>

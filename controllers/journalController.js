@@ -35,7 +35,7 @@ module.exports = {
   },
   journalByDate : function(req, res) {
     db.Journal
-      .findOne({date: req.params.date})
+      .find({date: req.params.date})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }

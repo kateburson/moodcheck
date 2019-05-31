@@ -32,8 +32,7 @@ class MoodSurvey extends React.Component {
     }
     console.log(moodSurvey);
     API.newMood(moodSurvey, id)
-    .then(() => this.props.updateMood([moodSurvey]))
-    .then(this.props.view(false, this.props.state.viewNewJournal));
+    .then(() => this.props.updateMood([moodSurvey]));
   }
 
 

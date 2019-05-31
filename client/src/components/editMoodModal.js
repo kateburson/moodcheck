@@ -9,6 +9,7 @@ class EditMoodModal extends React.Component {
     low: this.props.data.low,
     medication: this.props.data.medication,
     exercise: this.props.data.exercise,
+    id: localStorage.getItem("id")
   }
 
   componentDidMount = () => {

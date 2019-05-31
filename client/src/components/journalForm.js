@@ -23,8 +23,7 @@ class JournalForm extends React.Component {
     .then(() => this.props.updateJournal([entry]))
     .then(() => {
       this.setState({title: "", body: ""});
-      this.props.view(this.props.state.viewMoodSurvey, false)
-    })
+    });
   }
 
   render() {

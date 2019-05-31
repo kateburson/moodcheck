@@ -16,19 +16,9 @@ class Dashboard extends React.Component {
     this.state = {
       mood: [],
       journal: [],
-      viewMoodSurvey: true,
-      viewNewJournal: true
     }
     this.updateMood = this.updateMood.bind(this);
     this.updateJournal = this.updateJournal.bind(this);
-    this.changeView = this.changeView.bind(this);
-  }
-
-  changeView(moodSurvey, newJournal) {
-    this.setState({
-      viewMoodSurvey: moodSurvey,
-      viewNewJournal: newJournal
-    });
   }
 
   updateMood = mood => this.setState({mood: mood});
@@ -66,7 +56,7 @@ class Dashboard extends React.Component {
           <div className="row">
             <div className="col s12 l4">
 
-              {this.state.viewMoodSurvey ? 
+              {this.state.mood.length === 0 ? 
                 <div style={{
                   background: "white",
                   boxShadow: "10px 10px 20px 5px rgba(0, 0, 0, .1)",
@@ -74,12 +64,12 @@ class Dashboard extends React.Component {
                 }}>
                   <h5><b>Mood Survey</b></h5>
                   <div className="divider"></div>
-                  <MoodSurvey updateMood={this.updateMood}  view={this.changeView}/>
+                  <MoodSurvey updateMood={this.updateMood} />
                 </div>
-            :  null}
+                : null }
             
-              {this.state.viewNewJournal ? 
-              <div
+              {this.state.journal.length === 0 ? 
+               <div
                 style={{
                   background: "white",
                   boxShadow: "10px 10px 20px 5px rgba(0, 0, 0, .1)",
@@ -88,8 +78,9 @@ class Dashboard extends React.Component {
                 }}>
                   <h5><b>New Journal</b></h5>
                   <div className="divider"></div>
-                  <JournalForm updateJournal={this.updateJournal}  view={this.changeView}/>
-              </div> : null}
+                  <JournalForm updateJournal={this.updateJournal} />
+              </div> 
+              : null }
               
             </div>
 
