@@ -42,7 +42,7 @@ class Charts extends React.Component {
     const week = res.data.mood.filter(mood => moment(mood.date).isBetween(lastWeek, yesterdayEndOfRange))
     week.map(day => this.state.range[0].highs.push(day.high));
     week.map(day => this.state.range[0].lows.push(day.low));
-    const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     week.map(day => this.state.range[0].labels.push(weekdays[moment(day.date).day()]));
 
     const month = res.data.mood.filter(mood => moment(mood.date).isBetween(lastMonth, yesterdayEndOfRange));

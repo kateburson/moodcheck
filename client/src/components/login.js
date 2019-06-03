@@ -14,7 +14,7 @@ class Login extends Component {
     this.setState({ [e.target.id]: e.target.value });
   }
 
-  login = setCurrentUser => {
+  login = (setCurrentUser) => {
     const userData = {
       email: this.state.email,
       password: this.state.password,

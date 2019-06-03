@@ -107,6 +107,7 @@ class Dashboard extends React.Component {
                 marginTop: "25px",
               }}>
               <h5><b>Mood Chart</b></h5>
+              <div className="divider" />
               <MoodChart />
             </div> 
           </div>

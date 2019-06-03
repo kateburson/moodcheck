@@ -1,58 +1,78 @@
 import React from "react";
-import API from "../utils/API";
-import { Line } from 'react-chartjs-2';
+import { Line } from "react-chartjs-2";
+import moment from "moment";
 
+import API from "../utils/API";
+import Nav from "../components/sideNav";
 
 class MoodChart extends React.Component {
 
   state = {
-    moods: [],
-    chartData: []
+    chartData: {},
+    range: {
+      // last month
+      highs: [],
+      lows: [],
+      labels: []
+    },
   }
 
   componentWillMount = () => {
     const id = localStorage.getItem("id");
     API.findMoods(id)
-    .then(res => this.setState({moods: res.data}))
-    .then(console.log(this.state.moods));
+    .then(res => {
+    const lastMonth = moment().startOf('day').subtract(1,'month');
+    var yesterdayEndOfRange =  moment().endOf('day').subtract(1,'day');
+
+    const month = res.data.mood.filter(mood => moment(mood.date).isBetween(lastMonth, yesterdayEndOfRange));
+    month.map(day => this.state.range.highs.push(day.high));
+    month.map(day => this.state.range.lows.push(day.low));
+    month.map(day => this.state.range.labels.push(moment(day.date).format("DD")))
+
+    }).then(() => {this.buildChart()})
   }
 
-
-  componentDidMount = () => {
-    
+  buildChart = () => {
     const data = {
-      labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      labels : this.state.range.labels,
       datasets: [
         {
-          label: "Highs",
+          label: "High",
           fillColor: "rgba(220,220,220,0.2)",
           strokeColor: "rgba(220,220,220,1)",
           pointColor: "rgba(220,220,220,1)",
           pointStrokeColor: "#fff",
           pointHighlightFill: "#fff",
           pointHighlightStroke: "rgba(220,220,220,1)",
-          data: [65, 59, 80, 81, 56, 55, 40]
+          data: this.state.range.highs
         },
         {
-          label: "Lows",
+          label: "Low",
           fillColor: "rgba(151,187,205,0.2)",
           strokeColor: "rgba(151,187,205,1)",
           pointColor: "rgba(151,187,205,1)",
           pointStrokeColor: "#fff",
           pointHighlightFill: "#fff",
           pointHighlightStroke: "rgba(151,187,205,1)",
-          data: [28, 48, 40, 19, 86, 27, 90]
+          data: this.state.range.lows
         }
       ]
-    };
+    }
     this.setState({chartData: data})
-  
+    console.log(this.state.chartData)
   }
 
+  handleChange = e => {
+    e.preventDefault();
+    this.setState({ radio: e.target.value });
+    this.buildChart();
+  }
   
   render() {
     return(
-      <Line data={this.state.chartData} width="600" height="250"/>
+      <div style={{background: "white"}}>
+        <Line data={this.state.chartData} />
+      </div>
     )
   }
 }
