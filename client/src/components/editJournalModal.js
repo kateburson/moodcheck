@@ -5,8 +5,7 @@ import M from "react-materialize";
 class EditMoodModal extends React.Component {
   state = {
     title: this.props.data.title,
-    body: this.props.data.body,
-    id: localStorage.getItem("id")
+    body: this.props.data.body
   }
 
   componendDidMount() {

@@ -68,7 +68,6 @@ class Dashboard extends React.Component {
                 </div>
                 : null }
             
-              {this.state.journal.length === 0 ? 
                <div
                 style={{
                   background: "white",
@@ -80,7 +79,6 @@ class Dashboard extends React.Component {
                   <div className="divider"></div>
                   <JournalForm updateJournal={this.updateJournal} />
               </div> 
-              : null }
               
             </div>
 
