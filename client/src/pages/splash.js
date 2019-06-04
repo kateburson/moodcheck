@@ -28,15 +28,15 @@ class Splash extends React.Component {
     })
   }
 
-  // componentDidMount() {
-  //   const token = localStorage.getItem("current_user_token");
+  componentDidMount() {
+    const token = localStorage.getItem("current_user_token");
 
-  //   if (token) {
-  //     API.validateToken(token)
-  //       .then(this.setState({redirectToDashboard: true}))
-  //       .catch(() => localStorage.removeItem("current_user_token"));
-  //   }
-  // }
+    if (token) {
+      API.validateToken(token)
+        .then(this.setState({redirectToDashboard: true}))
+        .catch(() => localStorage.removeItem("current_user_token"));
+    }
+  }
 
   render() {
     const { redirectToDashboard } = this.state
