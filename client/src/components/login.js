@@ -14,7 +14,8 @@ class Login extends Component {
     this.setState({ [e.target.id]: e.target.value });
   }
 
-  login = (setCurrentUser) => {
+  login = e => {
+    e.preventDefault();
     const userData = {
       email: this.state.email,
       password: this.state.password,
@@ -31,7 +32,7 @@ class Login extends Component {
       localStorage.setItem("email", currentUser.email);
       localStorage.setItem("id", currentUser.id);
     })
-    .then(() => setTimeout(() => this.props.view(false, false, false, true), 2000))
+    .then(() => setTimeout(() => this.props.view(false, false, false, true), 250))
     .catch(err => console.log(err));
   }
 
@@ -77,7 +78,7 @@ class Login extends Component {
                 className="btn btn-large black white-text hoverable waves-effect waves-light"
                 disabled={!Boolean(this.state.email && this.state.password)}
                 type="button"
-                onClick={() => this.login(value.setCurrentUser)}
+                onClick={(e) => this.login(e, value.setCurrentUser)}
                 >Login
               </button>
             </form>
