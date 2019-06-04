@@ -40,13 +40,13 @@ class Nav extends React.Component {
           </Link>
         
         <SideNav trigger={<i className="material-icons black-text" style={{fontSize: "20pt", height: "100%"}}>menu</i>} options={{closeOnClick: true}}>
-        {/* <AccountConsumer>
+        <AccountConsumer>
        { value => {
-        return( */}
+        return(
           <div className="grey darken-4" style={{height: "100vh", paddingTop: "25px"}}>
 
               <h5 className="left-align white-text" style={{lineHeight: "1.5em", padding: "20px", paddingTop: "10px"}}>
-              {/* <b>{value.currentUser.name}</b> */}
+              <b>{value.currentUser.name}</b>
               </h5>
 
             <div className="row">
@@ -82,9 +82,9 @@ class Nav extends React.Component {
               </button>  
             </div> 
         </div>
-        {/* )
+        )
       }}
-    </AccountConsumer> */}
+    </AccountConsumer>
         </SideNav>
         </div>
       </nav>
