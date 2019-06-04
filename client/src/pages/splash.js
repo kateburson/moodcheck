@@ -28,15 +28,15 @@ class Splash extends React.Component {
     })
   }
 
-  componentDidMount() {
-    const token = localStorage.getItem("current_user_token");
+  // componentDidMount() {
+  //   const token = localStorage.getItem("current_user_token");
 
-    if (token) {
-      API.validateToken(token)
-        .then(this.setState({redirectToDashboard: true}))
-        .catch(() => localStorage.removeItem("current_user_token"));
-    }
-  }
+  //   if (token) {
+  //     API.validateToken(token)
+  //       .then(this.setState({redirectToDashboard: true}))
+  //       .catch(() => localStorage.removeItem("current_user_token"));
+  //   }
+  // }
 
   render() {
     const { redirectToDashboard } = this.state
@@ -49,9 +49,9 @@ class Splash extends React.Component {
         width: "100vw",
         zIndex: 1
       }} >
-        {/* <div style={{position:"fixed", top: "-50px", width:"100%", height:"100%", zIndex:-100 }}>
+        <div style={{position:"fixed", top: "-50px", width:"100%", height:"100%", zIndex:-100 }}>
           <video autoPlay muted loop src="../../calflowers.MOV"></video>
-        </div> */}
+        </div>
         <div className="container">
           { this.state.landing ? <Landing view={this.changeView} /> : null }
           { this.state.login ? <Login view={this.changeView} /> : null}
