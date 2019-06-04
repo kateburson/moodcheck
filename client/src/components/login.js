@@ -32,7 +32,7 @@ class Login extends Component {
       localStorage.setItem("email", currentUser.email);
       localStorage.setItem("id", currentUser.id);
     })
-    // .then(() => setTimeout(() => this.props.view(false, false, false, true), 250))
+    .then(() => setTimeout(() => this.props.view(false, false, false, true), 250))
     .catch(err => console.log(err));
   }
 
