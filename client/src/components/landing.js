@@ -9,7 +9,7 @@ class Landing extends React.Component {
             Welcome to<img style={{width: "220px", marginLeft: "12.5px"}} src="../../logo.png" alt="MoodCheckLogo" />
           </h3 >
           <p className="flow-text grey-text text-darken-4">
-          With MoodCheck you can easily enter mood data, keep a mood journal to identify trends and triggers, and set checkpoints to promote mindfulness. Start tracking your mood today! 
+          With Mood Check you can easily enter mood data, keep a mood journal to identify trends and triggers, and set checkpoints to promote mindfulness. Start tracking your mood today! 
           </p>
           <br />
           <div className="row center-align">
