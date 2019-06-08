@@ -16,12 +16,11 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // DB Config
-// const db = require("./config/keys").mongoURI;
+const db = require("./config/keys").mongoURI;
 
 // Connect to MongoDB
-const uri = "mongodb+srv://kate:1234@moodcheck-zshli.mongodb.net/moodcheck?retryWrites=true&w=majority"
 mongoose
-  .connect(uri, { useNewUrlParser: true })
+  .connect(db, { useNewUrlParser: true })
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
 
