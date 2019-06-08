@@ -23,12 +23,11 @@ class Register extends React.Component {
         password: this.state.password
       }
       API.register(userData)
-      .then(this.props.view(false, false, false, true));
+      .then(this.props.view(false, true, false, false));
     } else {
       alert("Passwords do not match");
     }
   };
-
 
   render() {
     return(
