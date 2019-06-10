@@ -22,13 +22,7 @@ module.exports = {
           var token = jwt.sign({ email: u.email }, 'shhhhh');
           res.json({ id: u[0].id, email: u[0].email, name: u[0].name, token: token });
           }
-        }).catch(error => {
-          if (error.response) {
-            console.log(error);
-          } else {
-            console.log("success");
-          }
-        })
+        }).catch(error => console.log(error))
       }
     });
   },
