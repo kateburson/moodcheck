@@ -5,7 +5,8 @@ const saltRounds = 10;
 
 module.exports = {
   login: function(req, res) {
-    db.User.find({ email: req.body.email }).then(u => {
+    db.User.find({ email: req.body.email })
+    .then(u => {
       console.log(u ,Boolean(!u[0].email));
       console.log("name:", u[0].name);
       if (!u[0].email) {
@@ -21,12 +22,19 @@ module.exports = {
           var token = jwt.sign({ email: u.email }, 'shhhhh');
           res.json({ id: u[0].id, email: u[0].email, name: u[0].name, token: token });
           }
-        });
+        }).catch(error => {
+          if (error.response) {
+            console.log(error);
+          } else {
+            console.log("success");
+          }
+        })
       }
     });
   },
   register: function(req, res) {
-    db.User.find({ email: req.body.email }).then(u => {
+    db.User.find({ email: req.body.email })
+    .then(u => {
       console.log("u:", u, Boolean(u.email));
       if (u.email) res.status(400).send({ msg: 'Invalid Email or Password' });
       else {

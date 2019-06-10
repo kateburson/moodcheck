@@ -23,7 +23,7 @@ export default {
     return axios.get("/api/journal/" + date)
   },
   editJournal: function(updatedJournal, id) {
-    return axios.put("/api/journal" + id, updatedJournal)
+    return axios.put("/api/journal/" + id, updatedJournal)
   },
   newMood: function(moodSurvey, id) {
     return axios.post("/api/mood/" + id, moodSurvey)

@@ -43,7 +43,7 @@ class History extends React.Component {
               onClick={() => this.populateJournal(mood.date)}
             >
               <h5><b>Mood</b></h5>
-              high: {mood.body}
+              high: {mood.high}
               <br />
               low: {mood.low}
               <br />
