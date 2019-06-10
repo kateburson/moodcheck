@@ -1,5 +1,4 @@
 const express = require("express");
-
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
@@ -16,7 +15,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // DB Config
-const db = require("./config/keys").mongoURI;
+const db = require("./config/keys").MONGODB_URI;
 
 // Connect to MongoDB
 mongoose
