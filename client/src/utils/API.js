@@ -2,13 +2,13 @@ import axios from "axios";
 
 export default {
   register: function(userData) {
-    return axios.post("/api/users/register", userData)
+    return axios.post("/api/register", userData)
   },
   login: function(userData) {
-    return axios.post("/api/users/login", userData)
+    return axios.post("/api/login", userData)
   },
   validateToken: function(t) {
-    return axios.post("/api/users/validate", { token: t })
+    return axios.post("/api/validate", { token: t })
   },
   newEntry: function(entry, id) {
     return axios.post("/api/journal/" + id, entry)
