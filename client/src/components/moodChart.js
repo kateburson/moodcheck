@@ -48,13 +48,13 @@ class MoodChart extends React.Component {
         },
         {
           label: "Low",
-          fill: "rgba(0,128,0,0.2)",
-          borderColor: "rgba(0,128,0,1)",
-          backgroundColor: "rgba(0,128,0,1)",
-          pointBackgroundColor: "rgba(0,128,0,1)",
-          pointBorderColor: "rgba(0,128,0,1)",
-          pointHoverBackgroundColor: "rgba(0,128,0,1)",
-          pointHoverBorderColor: "rgba(0,128,0,1)",
+          fill: "rgba(150,150,150,0.2)",
+          borderColor: "rgba(150,150,150,1)",
+          backgroundColor: "rgba(150,150,150,1)",
+          pointBackgroundColor: "rgba(150,150,150,1)",
+          pointBorderColor: "rgba(150,150,150,1)",
+          pointHoverBackgroundColor: "rgba(150,150,150,1)",
+          pointHoverBorderColor: "rgba(150,150,150,1)",
           data: this.state.range.lows
         }
       ]

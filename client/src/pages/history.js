@@ -30,7 +30,7 @@ class History extends React.Component {
   
   render() {
     return(
-      <div style={{height: "100vh", width: "100vw", backgroundImage: 'url("../../moddaisy.png")'}}>
+      <div style={{height: "100vh", width: "100vw", backgroundImage: 'url("../../greendaisy.png")'}}>
         <Nav />
         <div className="container">
           <h3>Mood History</h3>

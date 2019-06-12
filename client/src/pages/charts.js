@@ -96,7 +96,7 @@ class Charts extends React.Component {
   
   render() {
     return(
-      <div style={{backgroundImage: 'url("../../moddaisy.png")'}}>
+      <div style={{backgroundImage: 'url("../../greendaisy.png")'}}>
         <Nav />
         <div className="container">
           <h3 className="left">Mood Chart</h3>

@@ -19,12 +19,14 @@ class Dashboard extends React.Component {
     }
     this.updateMood = this.updateMood.bind(this);
     this.updateJournal = this.updateJournal.bind(this);
+    this.newJournal = this.newJournal.bind(this);
   }
 
   updateMood = mood => this.setState({mood: mood});
   updateJournal = journal => this.setState({journal: journal});
-
-  componentDidMount = () => {
+  newJournal = journal => this.state.journal.push({journal});
+  
+  render() {
     const id = localStorage.getItem("id");
 
     API.findMoods(id)
@@ -41,9 +43,7 @@ class Dashboard extends React.Component {
       console.log(result);
       this.setState({journal: result});
     });
-  }
 
-  render() {
     return(
       <div style={{backgroundImage: 'url("../../greendaisy.png")'}}>
         <Nav />
@@ -77,7 +77,7 @@ class Dashboard extends React.Component {
                 }}>
                   <h5><b>New Journal</b></h5>
                   <div className="divider"></div>
-                  <JournalForm updateJournal={this.updateJournal} />
+                  <JournalForm newJournal={this.newJournal} />
               </div> 
               
             </div>

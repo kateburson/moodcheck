@@ -99,7 +99,7 @@ class MoodSurvey extends React.Component {
             borderRadius: "3px",
             letterSpacing: "1.5px",
             marginTop: "2rem",
-            background: "#FDFFC3",
+            background: "#8CC63F",
             color: "black"
           }}
           className="btn waves-effect waves-light"

@@ -1,5 +1,4 @@
 import React from "react";
-import moment from "moment";
 
 import API from "../utils/API";
 import { Modal } from "react-materialize";

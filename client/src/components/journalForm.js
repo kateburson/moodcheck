@@ -20,7 +20,7 @@ class JournalForm extends React.Component {
     }
     const id = localStorage.getItem("id");
     API.newEntry(entry, id)
-    .then(() => this.props.updateJournal([entry]))
+    .then(() => this.props.newJournal([{entry}]))
     .then(() => {
       this.setState({title: "", body: ""});
     });
@@ -67,7 +67,7 @@ class JournalForm extends React.Component {
             width: "150px",
             borderRadius: "3px",
             letterSpacing: "1.5px",
-            background: "#FDFFC3",
+            background: "#8CC63F",
             color: "black"
           }}
           className="btn waves-effect waves-light hoverable"
