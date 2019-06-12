@@ -12,12 +12,6 @@ class History extends React.Component {
     currentJournal: []
   }
 
-  componentDidMount = () => {
-    const id = localStorage.getItem("id");
-    API.findMoods(id)
-    .then(res => this.setState({moods: res.data.mood}))
-  }
-
   populateJournal = (props) => {
     const id = localStorage.getItem("id");
     API.populateJournal(id)
@@ -29,6 +23,9 @@ class History extends React.Component {
   }
   
   render() {
+    const id = localStorage.getItem("id");
+    API.findMoods(id)
+    .then(res => this.setState({moods: res.data.mood}))
     return(
       <div style={{height: "100vh", width: "100vw", backgroundImage: 'url("../../greendaisy.png")'}}>
         <Nav />
@@ -51,7 +48,7 @@ class History extends React.Component {
               <br />
               exercise: {mood.exercise ? <span>yes</span> : <span>no</span>}
               <br />
-              <h5><b>Journal</b></h5>
+              {this.state.currentJournal.length > 0 ? <h5><b>Journal</b></h5> : null}
               {this.state.currentJournal.map((result) =>
                 <div>
                   <p><b>{result.title}</b></p> 

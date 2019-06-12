@@ -37,7 +37,7 @@ class Charts extends React.Component {
     const lastWeek = moment().startOf('day').subtract(1,'week');
     const lastMonth = moment().startOf('day').subtract(1,'month');
     const lastYear = moment().startOf('day').subtract(1,'year');
-    var yesterdayEndOfRange =  moment().endOf('day').subtract(1,'day');
+    var yesterdayEndOfRange =  moment().endOf('day');
 
     const week = res.data.mood.filter(mood => moment(mood.date).isBetween(lastWeek, yesterdayEndOfRange))
     week.map(day => this.state.range[0].highs.push(day.high));
@@ -64,25 +64,37 @@ class Charts extends React.Component {
       datasets: [
         {
           label: "High",
-          fillColor: "rgba(220,220,220,0.2)",
-          strokeColor: "rgba(220,220,220,1)",
-          pointColor: "rgba(220,220,220,1)",
-          pointStrokeColor: "#fff",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(220,220,220,1)",
+          fill: "rgba(140,198,63,0.2)",
+          borderColor: "rgba(140,198,63,1)",
+          backgroundColor: "rgba(140,198,63,1)",
+          pointBackgroundColor: "rgba(140,198,63,1)",
+          pointBorderColor: "rgba(140,198,63,1)",
+          pointHoverBackgroundColor: "rgba(140,198,63,1)",
+          pointHoverBorderColor: "rgba(140,198,63,1)",
           data: this.state.range[Number(this.state.radio)].highs
         },
         {
           label: "Low",
-          fillColor: "rgba(151,187,205,0.2)",
-          strokeColor: "rgba(151,187,205,1)",
-          pointColor: "rgba(151,187,205,1)",
-          pointStrokeColor: "#fff",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(151,187,205,1)",
+          fill: "rgba(150,150,150,0.2)",
+          borderColor: "rgba(150,150,150,1)",
+          backgroundColor: "rgba(150,150,150,1)",
+          pointBackgroundColor: "rgba(150,150,150,1)",
+          pointBorderColor: "rgba(150,150,150,1)",
+          pointHoverBackgroundColor: "rgba(150,150,150,1)",
+          pointHoverBorderColor: "rgba(150,150,150,1)",
           data: this.state.range[Number(this.state.radio)].lows
         }
-      ]
+      ],
+      options:{
+        scales: {
+          yAxes : [{
+            ticks : {
+              max : 10,    
+              min : 0
+            }
+          }]
+        }
+    }
     }
     this.setState({chartData: data})
     console.log(this.state.chartData)
@@ -114,7 +126,7 @@ class Charts extends React.Component {
               <span>year</span>
             </label>
           </div>
-          <Line data={this.state.chartData} />
+          <Line data={this.state.chartData}/>
         </div>
       </div>
     )
