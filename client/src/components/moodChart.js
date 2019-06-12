@@ -3,7 +3,6 @@ import { Line } from "react-chartjs-2";
 import moment from "moment";
 
 import API from "../utils/API";
-import Nav from "../components/sideNav";
 
 class MoodChart extends React.Component {
 
@@ -38,22 +37,24 @@ class MoodChart extends React.Component {
       datasets: [
         {
           label: "High",
-          fillColor: "rgba(220,220,220,0.2)",
-          strokeColor: "rgba(220,220,220,1)",
-          pointColor: "rgba(220,220,220,1)",
-          pointStrokeColor: "#fff",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(220,220,220,1)",
+          fill: "rgba(140,198,63,0.2)",
+          borderColor: "rgba(140,198,63,1)",
+          backgroundColor: "rgba(140,198,63,1)",
+          pointBackgroundColor: "rgba(140,198,63,1)",
+          pointBorderColor: "rgba(140,198,63,1)",
+          pointHoverBackgroundColor: "rgba(140,198,63,1)",
+          pointHoverBorderColor: "rgba(140,198,63,1)",
           data: this.state.range.highs
         },
         {
           label: "Low",
-          fillColor: "rgba(151,187,205,0.2)",
-          strokeColor: "rgba(151,187,205,1)",
-          pointColor: "rgba(151,187,205,1)",
-          pointStrokeColor: "#fff",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(151,187,205,1)",
+          fill: "rgba(0,128,0,0.2)",
+          borderColor: "rgba(0,128,0,1)",
+          backgroundColor: "rgba(0,128,0,1)",
+          pointBackgroundColor: "rgba(0,128,0,1)",
+          pointBorderColor: "rgba(0,128,0,1)",
+          pointHoverBackgroundColor: "rgba(0,128,0,1)",
+          pointHoverBorderColor: "rgba(0,128,0,1)",
           data: this.state.range.lows
         }
       ]

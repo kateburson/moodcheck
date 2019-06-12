@@ -68,6 +68,7 @@ class MoodSurvey extends React.Component {
           <label>
           <input 
             type="checkbox"
+            class="checkbox-green"
             id="medication"
             value={this.state.medication}
             onChange={this.handleCheckbox}
@@ -83,7 +84,8 @@ class MoodSurvey extends React.Component {
         >
           <label>
           <input 
-            type="checkbox" 
+            type="checkbox"
+            class="checkbox-green"
             id="exercise"
             value={this.state.exercise}
             onChange={this.handleCheckbox}

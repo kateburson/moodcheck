@@ -51,6 +51,7 @@ class JournalForm extends React.Component {
             <div className="input-field col s12">
               <textarea 
                 id="body" 
+                type="text"
                 className="materialize-textarea"
                 value={this.state.body}
                 onChange={this.handleChange}

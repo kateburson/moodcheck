@@ -5,6 +5,7 @@ const usersController = require("../../controllers/usersController");
 router.route("/login")
   .post(usersController.login)
 
+// Matches with "/api/users/register"
 router.route("/register")
   .post(usersController.register)
 

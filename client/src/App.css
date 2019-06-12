@@ -4,7 +4,7 @@
 }
 
 a {
-  color: teal;
+  color: green;
 }
 
 i {
@@ -17,78 +17,51 @@ i:hover {
   cursor: auto;
 }
 
-/* Position and sizing of burger button */
-.bm-burger-button {
-  position: fixed;
-  width: 22px;
-  height: 18px;
-  left: 22px;
-  top: 18px;
+input[type=text]:focus + label,
+input[type=password]:focus + label,
+input[type=email]:focus + label,
+textarea:focus + label {
+  color: green !important;
 }
 
-/* Color/shape of burger icon bars */
-.bm-burger-bars {
-  background: #212121;
+.row input[type=text]:focus,
+.row input[type=password]:focus,
+.row input[type=email]:focus,
+.row textarea:focus {
+  border-bottom: 1px solid green !important;
+  box-shadow: 0 1px 0 0 green !important
 }
 
-
-
-/* Color/shape of burger icon bars on hover*/
-.bm-burger-bars-hover {
-  background: black;
+.input-field textarea :focus + label {
+  color: green !important;
 }
 
-/* Position and sizing of clickable cross button */
-.bm-cross-button {
-  height: 24px;
-  width: 24px;
+.row .input-field textarea text:focus {
+  border-bottom: 1px solid green !important;
+  box-shadow: 0 1px 0 0 green !important
 }
 
-/* Color/shape of close button cross */
-.bm-cross {
-  background: #bdc3c7;
+input[type=range] + .thumb {
+  background-color: #8CC63F;
 }
 
-/*
-Sidebar wrapper styles
-Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
-*/
-.bm-menu-wrap {
-  position: fixed;
-  height: 100%;
-  max-height: 100%;
-  overflow: hide;
+input[type=range] + .thumb.active .value {
+  color: black;
 }
 
-/* General sidebar styles */
-.bm-menu {
-  background: #212121;
-  font-size: 1.15em;
+input[type=range]::-webkit-slider-thumb {
+  background-color: #8CC63F;
 }
 
-/* Wrapper for item list */
-.bm-item-list {
-  background: #212121;
-  text-align: left;
-  margin-top: 3em;
-  margin-left: 2em;
-  color: #eeeeee
+input[type=range]::-moz-range-thumb {
+  background-color: #8CC63F;
 }
 
-/* Individual item */
-.bm-item {
-  display: inline-block;
+input[type=range]::-ms-thumb {
+  background-color: #8CC63F;
 }
 
-.bm-item:hover {
-  color: #bdbdbd;
-}
-
-.bm-item:focus {
-  outline: none;
-}
-
-/* Styling of overlay */
-.bm-overlay {
-  background: rgba(0, 0, 0, .4);
+.checkbox-green[type="checkbox"]:checked + label:before{
+  border: 2px solid #8CC63F;
+  background-color: #8CC63F;
 }
