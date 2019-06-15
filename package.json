@@ -25,7 +25,6 @@
   "bugs": {
     "url": "https://github.com/kateburson/moodcheck/issues"
   },
-  "homepage": "https://kateburson.github.io/moodcheck",
   "dependencies": {
     "axios": "^0.18.0",
     "bcrypt": "^3.0.6",
