@@ -13,9 +13,7 @@
     "client": "cd client && npm run start",
     "seed": "node scripts/seedDB.js",
     "install": "cd client && npm install",
-    "build": "cd client && npm run build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "build": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
