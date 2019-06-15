@@ -14,7 +14,8 @@
     "seed": "node scripts/seedDB.js",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -26,12 +27,13 @@
   "bugs": {
     "url": "https://github.com/kateburson/moodcheck/issues"
   },
-  "homepage": "https://peaceful-wildwood-71736.herokuapp.com/",
+  "homepage": "https://kateburson.github.io/moodcheck",
   "dependencies": {
     "axios": "^0.18.0",
     "bcrypt": "^3.0.6",
     "concurrently": "^4.1.0",
     "express": "^4.16.4",
+    "gh-pages": "^2.0.1",
     "http-proxy-middleware": "^0.19.1",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
