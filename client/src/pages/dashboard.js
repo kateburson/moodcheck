@@ -25,8 +25,8 @@ class Dashboard extends React.Component {
   updateMood = mood => this.setState({mood: mood});
   updateJournal = journal => this.setState({journal: journal});
   newJournal = journal => this.state.journal.push({journal});
-  
-  render() {
+
+  componentDidMount = () => {
     const id = localStorage.getItem("id");
 
     API.findMoods(id)
@@ -43,6 +43,9 @@ class Dashboard extends React.Component {
       console.log(result);
       this.setState({journal: result});
     });
+  }
+  
+  render() {
 
     return(
       <div style={{backgroundImage: 'url("../../greendaisy.png")'}}>
